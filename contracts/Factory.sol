@@ -1,23 +1,29 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./YearnPort.sol";
+import "./Vault.sol";
 
 contract Factory {
+    event Deployed(address addr);
 
-    address public testing_lastcreated;
 
-    function createVault() external returns (address) {
-      address addr = _deployVault();
-      testing_lastcreated = addr;
-      Vault(addr).setSomething(222);
-      return addr;
-    }
+    function getCreationBytecode(address _implementation) public pure returns (bytes memory) {
+        require(_implementation != address(0), "No implementation contract address specified.");
 
-    function _deployVault() internal returns (address) {
-        address addr;
         bytes memory bytecode = type(Vault).creationCode;
-        assembly {addr := create2(0, add(bytecode, 0x20), mload(bytecode), "")}
-        require(addr != address(0), "Vault deploy failed");
-        return addr;
+
+        return abi.encodePacked(bytecode, abi.encode(_implementation));
     }
-  }
+
+    function deploy(bytes memory bytecode) public {
+        address addr;
+        assembly {
+            addr := create2(0, add(bytecode, 0x20), mload(bytecode),  "")
+
+            if iszero(extcodesize(addr)) {
+                revert(0, 0)
+            }
+        }
+        emit Deployed(addr);
+    }
+}
