@@ -2,11 +2,30 @@
 pragma solidity ^0.8.0;
 
 contract Vault {
+
+    /*//////////////////////////////////////////////////////////////
+                               VARIABLES & EVENTS
+    //////////////////////////////////////////////////////////////*/
+
     address public factory;
     address public implementation;
 
+    event implementationIsSet(address);
+    event AddedValuesByDelegateCall(address vault, bool success);
+
+
     /*//////////////////////////////////////////////////////////////
-                               CONSTRUCTOR
+                               MODIFIERS
+    //////////////////////////////////////////////////////////////*/
+
+
+    modifier onlyFactory() {
+        require(msg.sender == factory, "onlyFactory()");
+        _;
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                               INIT
     //////////////////////////////////////////////////////////////*/
 
     constructor(address _implementation) public {
@@ -14,14 +33,12 @@ contract Vault {
         factory = msg.sender;
     }
 
-    modifier onlyFactory() {
-        require(msg.sender == factory, "onlyFactory()");
-        _;
-    }
+
+    /*//////////////////////////////////////////////////////////////
+                               READS
+    //////////////////////////////////////////////////////////////*/
 
 
-    event implementationIsSet(address);
-    event AddedValuesByDelegateCall(address vault, bool success);
 
     function setImplementation(address _implementation) external {
         implementation = _implementation;
@@ -31,6 +48,11 @@ contract Vault {
     function getImplementation() external view returns(address){
         return implementation;
     }
+
+
+    /*//////////////////////////////////////////////////////////////
+                               WRITES
+    //////////////////////////////////////////////////////////////*/
 
 
     function testDelegateCallPricePerShare(address _vault) external returns(uint256){

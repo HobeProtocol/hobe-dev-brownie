@@ -1,5 +1,5 @@
 from web3 import Web3
-from brownie import *
+from brownie import accounts, Factory, YearnPort, Vault
 
 def main():
     deployer = accounts[0]
