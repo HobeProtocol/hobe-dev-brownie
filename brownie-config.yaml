@@ -30,28 +30,17 @@ networks:
             mnemonic: brownie
             block_time: 0
             default_balance: 1000
-            time: 2022-05-08T14:54:08+0000
-            unlock: null
     mainnet-fork:
         explorer: https://api.etherscan.io/api
-        gas_limit: max
-        gas_buffer: 1
-        gas_price: 0
-        max_fee: null
-        priority_fee: null
-        reverting_tx_gas_limit: max
-        default_contract_owner: true
         cmd: ganache-cli
         cmd_settings:
-            accounts: 10
-            evm_version: istanbul
+            accounts: 20
             fork: $ETHEREUM_MAINNET_RPC_CONNECTION
-            disable_cache: null
             mnemonic: brownie
-            block_time: 0
             default_balance: 1000
-            unlock: null
-          
+            chain_id: 1
+
+autofetch_sources: True      
 
 compiler:
     evm_version: null
