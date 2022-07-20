@@ -1,3 +1,5 @@
+dotenv: secrets.env
+
 project_structure:
     build: build
     contracts: contracts
@@ -7,7 +9,7 @@ project_structure:
     tests: tests
 
 networks:
-    default: development
+    default: mainnet-fork
     development:
         gas_limit: max
         gas_buffer: 1
@@ -27,18 +29,29 @@ networks:
             disable_cache: null
             mnemonic: brownie
             block_time: 0
-            default_balance: 100
+            default_balance: 1000
             time: 2022-05-08T14:54:08+0000
             unlock: null
-      
-    live:
-        gas_limit: auto
-        gas_buffer: 1.1
-        gas_price: auto
+    mainnet-fork:
+        explorer: https://api.etherscan.io/api
+        gas_limit: max
+        gas_buffer: 1
+        gas_price: 0
         max_fee: null
         priority_fee: null
-        reverting_tx_gas_limit: false
-        default_contract_owner: false
+        reverting_tx_gas_limit: max
+        default_contract_owner: true
+        cmd: ganache-cli
+        cmd_settings:
+            accounts: 10
+            evm_version: istanbul
+            fork: $ETHEREUM_MAINNET_RPC_CONNECTION
+            disable_cache: null
+            mnemonic: brownie
+            block_time: 0
+            default_balance: 1000
+            unlock: null
+          
 
 compiler:
     evm_version: null
