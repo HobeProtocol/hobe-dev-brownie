@@ -1,4 +1,4 @@
-dotenv: secrets.env
+dotenv: .env
 
 project_structure:
     build: build
