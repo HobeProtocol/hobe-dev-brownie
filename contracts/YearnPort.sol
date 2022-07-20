@@ -5,7 +5,7 @@ import {ERC20} from "./../lib/solmate/src/tokens/ERC20.sol";
 import {SafeTransferLib} from "./../lib/solmate/src/utils/SafeTransferLib.sol";
 
 import {Factory} from "./Factory.sol";
-import {IYearn} from "./../interfaces/IYearn.sol";
+import {IYearn} from "./../interfaces/Yearn/IYearn.sol";
 
     /*
     * @title YearnPort

@@ -5,6 +5,10 @@ contract Vault {
     address public factory;
     address public implementation;
 
+    /*//////////////////////////////////////////////////////////////
+                               CONSTRUCTOR
+    //////////////////////////////////////////////////////////////*/
+
     constructor(address _implementation) public {
         implementation = _implementation;
         factory = msg.sender;
