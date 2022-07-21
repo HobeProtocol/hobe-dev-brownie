@@ -1,17 +1,6 @@
 {
   "abi": [
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_implementation",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
       "anonymous": false,
       "inputs": [
         {
@@ -28,6 +17,19 @@
         }
       ],
       "name": "AddedValuesByDelegateCall",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "test",
+          "type": "uint256"
+        }
+      ],
+      "name": "Test",
       "type": "event"
     },
     {
@@ -90,7 +92,7 @@
           "type": "address"
         }
       ],
-      "name": "setImplementation",
+      "name": "init",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -104,13 +106,7 @@
         }
       ],
       "name": "testDelegateCallPricePerShare",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
+      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
@@ -122,15 +118,15 @@
     "absolutePath": "contracts/Vault.sol",
     "exportedSymbols": {
       "Vault": [
-        160
+        162
       ]
     },
-    "id": 161,
+    "id": 163,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 57,
+        "id": 62,
         "literals": [
           "solidity",
           "^",
@@ -147,9 +143,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 160,
+        "id": 162,
         "linearizedBaseContracts": [
-          160
+          162
         ],
         "name": "Vault",
         "nameLocation": "66:5:1",
@@ -158,12 +154,12 @@
           {
             "constant": false,
             "functionSelector": "c45a0155",
-            "id": 59,
+            "id": 64,
             "mutability": "mutable",
             "name": "factory",
             "nameLocation": "283:7:1",
             "nodeType": "VariableDeclaration",
-            "scope": 160,
+            "scope": 162,
             "src": "268:22:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -172,7 +168,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 58,
+              "id": 63,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "268:7:1",
@@ -187,12 +183,12 @@
           {
             "constant": false,
             "functionSelector": "5c60da1b",
-            "id": 61,
+            "id": 66,
             "mutability": "mutable",
             "name": "implementation",
             "nameLocation": "311:14:1",
             "nodeType": "VariableDeclaration",
-            "scope": 160,
+            "scope": 162,
             "src": "296:29:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -201,7 +197,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 60,
+              "id": 65,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "296:7:1",
@@ -214,26 +210,53 @@
             "visibility": "public"
           },
           {
+            "constant": false,
+            "id": 68,
+            "mutability": "mutable",
+            "name": "isInited",
+            "nameLocation": "344:8:1",
+            "nodeType": "VariableDeclaration",
+            "scope": 162,
+            "src": "331:21:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 67,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "331:4:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "visibility": "private"
+          },
+          {
             "anonymous": false,
             "eventSelector": "4c07b1246bd2051a9f99c2bb74ed771ddcdd2fbfb030741c7c61308051a584ef",
-            "id": 65,
+            "id": 72,
             "name": "implementationIsSet",
-            "nameLocation": "338:19:1",
+            "nameLocation": "365:19:1",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 64,
+              "id": 71,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 63,
+                  "id": 70,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 65,
-                  "src": "358:7:1",
+                  "scope": 72,
+                  "src": "385:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -241,10 +264,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 62,
+                    "id": 69,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "358:7:1",
+                    "src": "385:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -254,31 +277,31 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "357:9:1"
+              "src": "384:9:1"
             },
-            "src": "332:35:1"
+            "src": "359:35:1"
           },
           {
             "anonymous": false,
             "eventSelector": "c684ea12dba6e6e1178ce8714e05282cc73273b3390041bb5bbe72fa9d5d3a82",
-            "id": 71,
+            "id": 78,
             "name": "AddedValuesByDelegateCall",
-            "nameLocation": "378:25:1",
+            "nameLocation": "405:25:1",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 70,
+              "id": 77,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 67,
+                  "id": 74,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "vault",
-                  "nameLocation": "412:5:1",
+                  "nameLocation": "439:5:1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 71,
-                  "src": "404:13:1",
+                  "scope": 78,
+                  "src": "431:13:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -286,10 +309,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 66,
+                    "id": 73,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "404:7:1",
+                    "src": "431:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -300,14 +323,14 @@
                 },
                 {
                   "constant": false,
-                  "id": 69,
+                  "id": 76,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "success",
-                  "nameLocation": "424:7:1",
+                  "nameLocation": "451:7:1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 71,
-                  "src": "419:12:1",
+                  "scope": 78,
+                  "src": "446:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -315,10 +338,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 68,
+                    "id": 75,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "419:4:1",
+                    "src": "446:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -327,15 +350,59 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "403:29:1"
+              "src": "430:29:1"
             },
-            "src": "372:61:1"
+            "src": "399:61:1"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "63a242a632efe33c0e210e04e4173612a17efa4f16aa4890bc7e46caece80de0",
+            "id": 82,
+            "name": "Test",
+            "nameLocation": "471:4:1",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 81,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 80,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "test",
+                  "nameLocation": "484:4:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 82,
+                  "src": "476:12:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 79,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "476:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "475:14:1"
+            },
+            "src": "465:25:1"
           },
           {
             "body": {
-              "id": 82,
+              "id": 93,
               "nodeType": "Block",
-              "src": "644:75:1",
+              "src": "701:75:1",
               "statements": [
                 {
                   "expression": {
@@ -345,32 +412,32 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 77,
+                        "id": 88,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 74,
+                            "id": 85,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": -15,
-                            "src": "662:3:1",
+                            "src": "719:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 75,
+                          "id": 86,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
-                          "src": "662:10:1",
+                          "src": "719:10:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -379,18 +446,18 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 76,
+                          "id": 87,
                           "name": "factory",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 59,
-                          "src": "676:7:1",
+                          "referencedDeclaration": 64,
+                          "src": "733:7:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "662:21:1",
+                        "src": "719:21:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -398,14 +465,14 @@
                       },
                       {
                         "hexValue": "6f6e6c79466163746f72792829",
-                        "id": 78,
+                        "id": 89,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "685:15:1",
+                        "src": "742:15:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_b0490f9dabe2d681ab47ede58608239c19f794636b88709d7471418db081ef3f",
                           "typeString": "literal_string \"onlyFactory()\""
@@ -424,7 +491,7 @@
                           "typeString": "literal_string \"onlyFactory()\""
                         }
                       ],
-                      "id": 73,
+                      "id": 84,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -432,13 +499,13 @@
                         -18
                       ],
                       "referencedDeclaration": -18,
-                      "src": "654:7:1",
+                      "src": "711:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 79,
+                    "id": 90,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -446,101 +513,149 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "654:47:1",
+                    "src": "711:47:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 80,
+                  "id": 91,
                   "nodeType": "ExpressionStatement",
-                  "src": "654:47:1"
+                  "src": "711:47:1"
                 },
                 {
-                  "id": 81,
+                  "id": 92,
                   "nodeType": "PlaceholderStatement",
-                  "src": "711:1:1"
+                  "src": "768:1:1"
                 }
               ]
             },
-            "id": 83,
+            "id": 94,
             "name": "onlyFactory",
-            "nameLocation": "630:11:1",
+            "nameLocation": "687:11:1",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 72,
+              "id": 83,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "641:2:1"
+              "src": "698:2:1"
             },
-            "src": "621:98:1",
+            "src": "678:98:1",
             "virtual": false,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 97,
+              "id": 118,
               "nodeType": "Block",
-              "src": "944:79:1",
+              "src": "1005:149:1",
               "statements": [
                 {
                   "expression": {
-                    "id": 90,
+                    "arguments": [
+                      {
+                        "id": 101,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "1023:9:1",
+                        "subExpression": {
+                          "id": 100,
+                          "name": "isInited",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 68,
+                          "src": "1024:8:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "6e6f207365636f6e6420696e6974",
+                        "id": 102,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1033:16:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_4da1ac2c60c109ece0df1836edb3633bcf33e5df338d989eaebf55d8331e54c4",
+                          "typeString": "literal_string \"no second init\""
+                        },
+                        "value": "no second init"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_4da1ac2c60c109ece0df1836edb3633bcf33e5df338d989eaebf55d8331e54c4",
+                          "typeString": "literal_string \"no second init\""
+                        }
+                      ],
+                      "id": 99,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "1015:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 103,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
+                    "kind": "functionCall",
                     "lValueRequested": false,
-                    "leftHandSide": {
-                      "id": 88,
-                      "name": "implementation",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 61,
-                      "src": "954:14:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "id": 89,
-                      "name": "_implementation",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 85,
-                      "src": "971:15:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "src": "954:32:1",
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1015:35:1",
+                    "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
                     }
                   },
-                  "id": 91,
+                  "id": 104,
                   "nodeType": "ExpressionStatement",
-                  "src": "954:32:1"
+                  "src": "1015:35:1"
                 },
                 {
                   "expression": {
-                    "id": 95,
+                    "id": 108,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 92,
+                      "id": 105,
                       "name": "factory",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 59,
-                      "src": "996:7:1",
+                      "referencedDeclaration": 64,
+                      "src": "1060:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -550,116 +665,54 @@
                     "operator": "=",
                     "rightHandSide": {
                       "expression": {
-                        "id": 93,
+                        "id": 106,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": -15,
-                        "src": "1006:3:1",
+                        "src": "1070:3:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 94,
+                      "id": 107,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
-                      "src": "1006:10:1",
+                      "src": "1070:10:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "996:20:1",
+                    "src": "1060:20:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 96,
+                  "id": 109,
                   "nodeType": "ExpressionStatement",
-                  "src": "996:20:1"
-                }
-              ]
-            },
-            "id": 98,
-            "implemented": true,
-            "kind": "constructor",
-            "modifiers": [],
-            "name": "",
-            "nameLocation": "-1:-1:-1",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 86,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 85,
-                  "mutability": "mutable",
-                  "name": "_implementation",
-                  "nameLocation": "920:15:1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 98,
-                  "src": "912:23:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 84,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "912:7:1",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "911:25:1"
-            },
-            "returnParameters": {
-              "id": 87,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "944:0:1"
-            },
-            "scope": 160,
-            "src": "900:123:1",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 111,
-              "nodeType": "Block",
-              "src": "1269:100:1",
-              "statements": [
+                  "src": "1060:20:1"
+                },
                 {
                   "expression": {
-                    "id": 105,
+                    "id": 112,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 103,
+                      "id": 110,
                       "name": "implementation",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 61,
-                      "src": "1279:14:1",
+                      "referencedDeclaration": 66,
+                      "src": "1090:14:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -668,103 +721,97 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 104,
+                      "id": 111,
                       "name": "_implementation",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 100,
-                      "src": "1296:15:1",
+                      "referencedDeclaration": 96,
+                      "src": "1107:15:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "1279:32:1",
+                    "src": "1090:32:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 106,
+                  "id": 113,
                   "nodeType": "ExpressionStatement",
-                  "src": "1279:32:1"
+                  "src": "1090:32:1"
                 },
                 {
-                  "eventCall": {
-                    "arguments": [
-                      {
-                        "id": 108,
-                        "name": "_implementation",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 100,
-                        "src": "1346:15:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      ],
-                      "id": 107,
-                      "name": "implementationIsSet",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 65,
-                      "src": "1326:19:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
-                        "typeString": "function (address)"
-                      }
-                    },
-                    "id": 109,
+                  "expression": {
+                    "id": 116,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
-                    "kind": "functionCall",
                     "lValueRequested": false,
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "1326:36:1",
-                    "tryCall": false,
+                    "leftHandSide": {
+                      "id": 114,
+                      "name": "isInited",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 68,
+                      "src": "1132:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "74727565",
+                      "id": 115,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1143:4:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "1132:15:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
                     }
                   },
-                  "id": 110,
-                  "nodeType": "EmitStatement",
-                  "src": "1321:41:1"
+                  "id": 117,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1132:15:1"
                 }
               ]
             },
-            "functionSelector": "d784d426",
-            "id": 112,
+            "functionSelector": "19ab453c",
+            "id": 119,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "setImplementation",
-            "nameLocation": "1217:17:1",
+            "name": "init",
+            "nameLocation": "966:4:1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 101,
+              "id": 97,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 100,
+                  "id": 96,
                   "mutability": "mutable",
                   "name": "_implementation",
-                  "nameLocation": "1243:15:1",
+                  "nameLocation": "979:15:1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 112,
-                  "src": "1235:23:1",
+                  "scope": 119,
+                  "src": "971:23:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -772,10 +819,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 99,
+                    "id": 95,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1235:7:1",
+                    "src": "971:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -785,73 +832,73 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1234:25:1"
+              "src": "970:25:1"
             },
             "returnParameters": {
-              "id": 102,
+              "id": 98,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1269:0:1"
+              "src": "1005:0:1"
             },
-            "scope": 160,
-            "src": "1208:161:1",
+            "scope": 162,
+            "src": "957:197:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 119,
+              "id": 126,
               "nodeType": "Block",
-              "src": "1434:38:1",
+              "src": "1399:38:1",
               "statements": [
                 {
                   "expression": {
-                    "id": 117,
+                    "id": 124,
                     "name": "implementation",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 61,
-                    "src": "1451:14:1",
+                    "referencedDeclaration": 66,
+                    "src": "1416:14:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 116,
-                  "id": 118,
+                  "functionReturnParameters": 123,
+                  "id": 125,
                   "nodeType": "Return",
-                  "src": "1444:21:1"
+                  "src": "1409:21:1"
                 }
               ]
             },
             "functionSelector": "aaf10f42",
-            "id": 120,
+            "id": 127,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getImplementation",
-            "nameLocation": "1384:17:1",
+            "nameLocation": "1349:17:1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 113,
+              "id": 120,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1401:2:1"
+              "src": "1366:2:1"
             },
             "returnParameters": {
-              "id": 116,
+              "id": 123,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 115,
+                  "id": 122,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 120,
-                  "src": "1426:7:1",
+                  "scope": 127,
+                  "src": "1391:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -859,10 +906,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 114,
+                    "id": 121,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1426:7:1",
+                    "src": "1391:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -872,35 +919,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1425:9:1"
+              "src": "1390:9:1"
             },
-            "scope": 160,
-            "src": "1375:97:1",
+            "scope": 162,
+            "src": "1340:97:1",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 158,
+              "id": 160,
               "nodeType": "Block",
-              "src": "1737:332:1",
+              "src": "1693:278:1",
               "statements": [
                 {
                   "assignments": [
-                    128,
-                    130
+                    133,
+                    135
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 128,
+                      "id": 133,
                       "mutability": "mutable",
                       "name": "success",
-                      "nameLocation": "1753:7:1",
+                      "nameLocation": "1709:7:1",
                       "nodeType": "VariableDeclaration",
-                      "scope": 158,
-                      "src": "1748:12:1",
+                      "scope": 160,
+                      "src": "1704:12:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -908,10 +955,10 @@
                         "typeString": "bool"
                       },
                       "typeName": {
-                        "id": 127,
+                        "id": 132,
                         "name": "bool",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1748:4:1",
+                        "src": "1704:4:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -921,13 +968,13 @@
                     },
                     {
                       "constant": false,
-                      "id": 130,
+                      "id": 135,
                       "mutability": "mutable",
                       "name": "returnedData",
-                      "nameLocation": "1775:12:1",
+                      "nameLocation": "1731:12:1",
                       "nodeType": "VariableDeclaration",
-                      "scope": 158,
-                      "src": "1762:25:1",
+                      "scope": 160,
+                      "src": "1718:25:1",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
@@ -935,10 +982,10 @@
                         "typeString": "bytes"
                       },
                       "typeName": {
-                        "id": 129,
+                        "id": 134,
                         "name": "bytes",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1762:5:1",
+                        "src": "1718:5:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_storage_ptr",
                           "typeString": "bytes"
@@ -947,21 +994,21 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 139,
+                  "id": 144,
                   "initialValue": {
                     "arguments": [
                       {
                         "arguments": [
                           {
                             "hexValue": "676574596561726e50726963655065725368617265286164647265737329",
-                            "id": 135,
+                            "id": 140,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "string",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1852:32:1",
+                            "src": "1808:32:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_stringliteral_45df65349e80cb32ff64c249ef15efdd080709da2be0e69b8b37413ea32f995c",
                               "typeString": "literal_string \"getYearnPricePerShare(address)\""
@@ -969,12 +1016,12 @@
                             "value": "getYearnPricePerShare(address)"
                           },
                           {
-                            "id": 136,
+                            "id": 141,
                             "name": "_vault",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 122,
-                            "src": "1886:6:1",
+                            "referencedDeclaration": 129,
+                            "src": "1842:6:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -993,31 +1040,31 @@
                             }
                           ],
                           "expression": {
-                            "id": 133,
+                            "id": 138,
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": -1,
-                            "src": "1828:3:1",
+                            "src": "1784:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_abi",
                               "typeString": "abi"
                             }
                           },
-                          "id": 134,
+                          "id": 139,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "lValueRequested": false,
                           "memberName": "encodeWithSignature",
                           "nodeType": "MemberAccess",
-                          "src": "1828:23:1",
+                          "src": "1784:23:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_abiencodewithsignature_pure$_t_string_memory_ptr_$returns$_t_bytes_memory_ptr_$",
                             "typeString": "function (string memory) pure returns (bytes memory)"
                           }
                         },
-                        "id": 137,
+                        "id": 142,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1025,7 +1072,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "1828:65:1",
+                        "src": "1784:65:1",
                         "tryCall": false,
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
@@ -1041,31 +1088,31 @@
                         }
                       ],
                       "expression": {
-                        "id": 131,
+                        "id": 136,
                         "name": "implementation",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 61,
-                        "src": "1791:14:1",
+                        "referencedDeclaration": 66,
+                        "src": "1747:14:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
-                      "id": 132,
+                      "id": 137,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "delegatecall",
                       "nodeType": "MemberAccess",
-                      "src": "1791:27:1",
+                      "src": "1747:27:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_baredelegatecall_nonpayable$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
                         "typeString": "function (bytes memory) returns (bool,bytes memory)"
                       }
                     },
-                    "id": 138,
+                    "id": 143,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1073,7 +1120,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1791:112:1",
+                    "src": "1747:112:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
@@ -1081,18 +1128,18 @@
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1747:156:1"
+                  "src": "1703:156:1"
                 },
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 141,
+                        "id": 146,
                         "name": "success",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 128,
-                        "src": "1921:7:1",
+                        "referencedDeclaration": 133,
+                        "src": "1877:7:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1100,14 +1147,14 @@
                       },
                       {
                         "hexValue": "64656c656761746543616c6c206661696c6564",
-                        "id": 142,
+                        "id": 147,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "1930:21:1",
+                        "src": "1886:21:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_af6bfea76039a9127475d477f24bd8b309e88aab9bf09d387ff24d6b795aeb1b",
                           "typeString": "literal_string \"delegateCall failed\""
@@ -1126,7 +1173,7 @@
                           "typeString": "literal_string \"delegateCall failed\""
                         }
                       ],
-                      "id": 140,
+                      "id": 145,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1134,79 +1181,10 @@
                         -18
                       ],
                       "referencedDeclaration": -18,
-                      "src": "1913:7:1",
+                      "src": "1869:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 143,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "1913:39:1",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 144,
-                  "nodeType": "ExpressionStatement",
-                  "src": "1913:39:1"
-                },
-                {
-                  "eventCall": {
-                    "arguments": [
-                      {
-                        "id": 146,
-                        "name": "_vault",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 122,
-                        "src": "1994:6:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "id": 147,
-                        "name": "success",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 128,
-                        "src": "2002:7:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      ],
-                      "id": 145,
-                      "name": "AddedValuesByDelegateCall",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 71,
-                      "src": "1968:25:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bool_$returns$__$",
-                        "typeString": "function (address,bool)"
                       }
                     },
                     "id": 148,
@@ -1217,7 +1195,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1968:42:1",
+                    "src": "1869:39:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
@@ -1225,98 +1203,134 @@
                     }
                   },
                   "id": 149,
-                  "nodeType": "EmitStatement",
-                  "src": "1963:47:1"
+                  "nodeType": "ExpressionStatement",
+                  "src": "1869:39:1"
                 },
                 {
-                  "expression": {
+                  "eventCall": {
                     "arguments": [
                       {
-                        "id": 152,
-                        "name": "returnedData",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 130,
-                        "src": "2038:12:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bytes_memory_ptr",
-                          "typeString": "bytes memory"
-                        }
-                      },
-                      {
-                        "components": [
+                        "arguments": [
                           {
-                            "id": 154,
+                            "id": 153,
+                            "name": "returnedData",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 135,
+                            "src": "1939:12:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          },
+                          {
+                            "components": [
+                              {
+                                "id": 155,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "lValueRequested": false,
+                                "nodeType": "ElementaryTypeNameExpression",
+                                "src": "1954:7:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_type$_t_uint256_$",
+                                  "typeString": "type(uint256)"
+                                },
+                                "typeName": {
+                                  "id": 154,
+                                  "name": "uint256",
+                                  "nodeType": "ElementaryTypeName",
+                                  "src": "1954:7:1",
+                                  "typeDescriptions": {}
+                                }
+                              }
+                            ],
+                            "id": 156,
                             "isConstant": false,
+                            "isInlineArray": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
-                            "nodeType": "ElementaryTypeNameExpression",
-                            "src": "2053:7:1",
+                            "nodeType": "TupleExpression",
+                            "src": "1953:9:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_uint256_$",
                               "typeString": "type(uint256)"
-                            },
-                            "typeName": {
-                              "id": 153,
-                              "name": "uint256",
-                              "nodeType": "ElementaryTypeName",
-                              "src": "2053:7:1",
-                              "typeDescriptions": {}
                             }
                           }
                         ],
-                        "id": 155,
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            },
+                            {
+                              "typeIdentifier": "t_type$_t_uint256_$",
+                              "typeString": "type(uint256)"
+                            }
+                          ],
+                          "expression": {
+                            "id": 151,
+                            "name": "abi",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -1,
+                            "src": "1928:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_abi",
+                              "typeString": "abi"
+                            }
+                          },
+                          "id": 152,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "decode",
+                          "nodeType": "MemberAccess",
+                          "src": "1928:10:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_abidecode_pure$__$returns$__$",
+                            "typeString": "function () pure"
+                          }
+                        },
+                        "id": 157,
                         "isConstant": false,
-                        "isInlineArray": false,
                         "isLValue": false,
-                        "isPure": true,
+                        "isPure": false,
+                        "kind": "functionCall",
                         "lValueRequested": false,
-                        "nodeType": "TupleExpression",
-                        "src": "2052:9:1",
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1928:35:1",
+                        "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_uint256_$",
-                          "typeString": "type(uint256)"
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
                         }
                       }
                     ],
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_bytes_memory_ptr",
-                          "typeString": "bytes memory"
-                        },
-                        {
-                          "typeIdentifier": "t_type$_t_uint256_$",
-                          "typeString": "type(uint256)"
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
                         }
                       ],
-                      "expression": {
-                        "id": 150,
-                        "name": "abi",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": -1,
-                        "src": "2027:3:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_magic_abi",
-                          "typeString": "abi"
-                        }
-                      },
-                      "id": 151,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "lValueRequested": false,
-                      "memberName": "decode",
-                      "nodeType": "MemberAccess",
-                      "src": "2027:10:1",
+                      "id": 150,
+                      "name": "Test",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 82,
+                      "src": "1923:4:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_abidecode_pure$__$returns$__$",
-                        "typeString": "function () pure"
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
                       }
                     },
-                    "id": 156,
+                    "id": 158,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1324,41 +1338,40 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "2027:35:1",
+                    "src": "1923:41:1",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
                     }
                   },
-                  "functionReturnParameters": 126,
-                  "id": 157,
-                  "nodeType": "Return",
-                  "src": "2020:42:1"
+                  "id": 159,
+                  "nodeType": "EmitStatement",
+                  "src": "1918:46:1"
                 }
               ]
             },
             "functionSelector": "9de0514e",
-            "id": 159,
+            "id": 161,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "testDelegateCallPricePerShare",
-            "nameLocation": "1666:29:1",
+            "nameLocation": "1638:29:1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 123,
+              "id": 130,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 122,
+                  "id": 129,
                   "mutability": "mutable",
                   "name": "_vault",
-                  "nameLocation": "1704:6:1",
+                  "nameLocation": "1676:6:1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 159,
-                  "src": "1696:14:1",
+                  "scope": 161,
+                  "src": "1668:14:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1366,10 +1379,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 121,
+                    "id": 128,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1696:7:1",
+                    "src": "1668:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1379,58 +1392,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1695:16:1"
+              "src": "1667:16:1"
             },
             "returnParameters": {
-              "id": 126,
+              "id": 131,
               "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 125,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nameLocation": "-1:-1:-1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 159,
-                  "src": "1729:7:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 124,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1729:7:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1728:9:1"
+              "parameters": [],
+              "src": "1693:0:1"
             },
-            "scope": 160,
-            "src": "1657:412:1",
+            "scope": 162,
+            "src": "1629:342:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 161,
-        "src": "57:2014:1",
+        "scope": 163,
+        "src": "57:1916:1",
         "usedErrors": []
       }
     ],
-    "src": "32:2039:1"
+    "src": "32:2126:1"
   },
-  "bytecode": "608060405234801561001057600080fd5b506040516103d43803806103d483398101604081905261002f9161005d565b600180546001600160a01b039092166001600160a01b0319928316179055600080549091163317905561008d565b60006020828403121561006f57600080fd5b81516001600160a01b038116811461008657600080fd5b9392505050565b6103388061009c6000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80635c60da1b1461005c5780639de0514e1461008c578063aaf10f42146100ad578063c45a0155146100be578063d784d426146100d1575b600080fd5b60015461006f906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b61009f61009a36600461027e565b6100e6565b604051908152602001610083565b6001546001600160a01b031661006f565b60005461006f906001600160a01b031681565b6100e46100df36600461027e565b61022a565b005b6001546040516001600160a01b038381166024830152600092839283929091169060440160408051601f198184030181529181526020820180516001600160e01b0316631177d94d60e21b1790525161013f91906102ae565b600060405180830381855af49150503d806000811461017a576040519150601f19603f3d011682016040523d82523d6000602084013e61017f565b606091505b5091509150816101cb5760405162461bcd60e51b815260206004820152601360248201527219195b1959d85d1950d85b1b0819985a5b1959606a1b604482015260640160405180910390fd5b604080516001600160a01b038616815283151560208201527fc684ea12dba6e6e1178ce8714e05282cc73273b3390041bb5bbe72fa9d5d3a82910160405180910390a18080602001905181019061022291906102e9565b949350505050565b600180546001600160a01b0319166001600160a01b0383169081179091556040519081527f4c07b1246bd2051a9f99c2bb74ed771ddcdd2fbfb030741c7c61308051a584ef9060200160405180910390a150565b60006020828403121561029057600080fd5b81356001600160a01b03811681146102a757600080fd5b9392505050565b6000825160005b818110156102cf57602081860181015185830152016102b5565b818111156102de576000828501525b509190910192915050565b6000602082840312156102fb57600080fd5b505191905056fea26469706673582212200130bb6016bf5e6225764e9593ca4f76505868e529dbe2ec2743a08a8f6b65b164736f6c634300080d0033",
-  "bytecodeSha1": "c1a415d6e089dfd1a603ce0788eef6547c53a622",
+  "bytecode": "608060405234801561001057600080fd5b50610344806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806319ab453c1461005c5780635c60da1b146100715780639de0514e146100a0578063aaf10f42146100b3578063c45a0155146100c4575b600080fd5b61006f61006a36600461028a565b6100d7565b005b600154610084906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b61006f6100ae36600461028a565b610161565b6001546001600160a01b0316610084565b600054610084906001600160a01b031681565b600154600160a01b900460ff16156101275760405162461bcd60e51b815260206004820152600e60248201526d1b9bc81cd958dbdb99081a5b9a5d60921b60448201526064015b60405180910390fd5b600080546001600160a01b03191633179055600180546001600160a81b0319166001600160a01b039290921691909117600160a01b179055565b6001546040516001600160a01b038381166024830152600092839291169060440160408051601f198184030181529181526020820180516001600160e01b0316631177d94d60e21b179052516101b791906102ba565b600060405180830381855af49150503d80600081146101f2576040519150601f19603f3d011682016040523d82523d6000602084013e6101f7565b606091505b50915091508161023f5760405162461bcd60e51b815260206004820152601360248201527219195b1959d85d1950d85b1b0819985a5b1959606a1b604482015260640161011e565b7f63a242a632efe33c0e210e04e4173612a17efa4f16aa4890bc7e46caece80de08180602001905181019061027491906102f5565b60405190815260200160405180910390a1505050565b60006020828403121561029c57600080fd5b81356001600160a01b03811681146102b357600080fd5b9392505050565b6000825160005b818110156102db57602081860181015185830152016102c1565b818111156102ea576000828501525b509190910192915050565b60006020828403121561030757600080fd5b505191905056fea26469706673582212204ff28362a773398b7301f9c09e570b90030b97277a78331905084bdf645bab2d64736f6c634300080d0033",
+  "bytecodeSha1": "d4bcd767c420afb05ac31fede929355f1a558d91",
   "compiler": {
     "evm_version": "istanbul",
     "optimizer": {
@@ -1443,10 +1428,17 @@
   "coverageMap": {
     "branches": {
       "1": {
+        "Vault.init": {
+          "7": [
+            1023,
+            1032,
+            true
+          ]
+        },
         "Vault.testDelegateCallPricePerShare": {
-          "6": [
-            1921,
-            1928,
+          "8": [
+            1877,
+            1884,
             true
           ]
         }
@@ -1456,40 +1448,44 @@
       "1": {
         "Vault.getImplementation": {
           "0": [
-            1444,
-            1465
+            1409,
+            1430
           ]
         },
-        "Vault.setImplementation": {
-          "4": [
-            1279,
-            1311
+        "Vault.init": {
+          "1": [
+            1015,
+            1050
           ],
-          "5": [
-            1321,
-            1362
+          "2": [
+            1060,
+            1080
+          ],
+          "3": [
+            1090,
+            1122
+          ],
+          "4": [
+            1132,
+            1147
           ]
         },
         "Vault.testDelegateCallPricePerShare": {
-          "1": [
-            1913,
-            1952
+          "5": [
+            1869,
+            1908
           ],
-          "2": [
-            1963,
-            2010
-          ],
-          "3": [
-            2020,
-            2062
+          "6": [
+            1918,
+            1964
           ]
         }
       }
     }
   },
   "dependencies": [],
-  "deployedBytecode": "608060405234801561001057600080fd5b50600436106100575760003560e01c80635c60da1b1461005c5780639de0514e1461008c578063aaf10f42146100ad578063c45a0155146100be578063d784d426146100d1575b600080fd5b60015461006f906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b61009f61009a36600461027e565b6100e6565b604051908152602001610083565b6001546001600160a01b031661006f565b60005461006f906001600160a01b031681565b6100e46100df36600461027e565b61022a565b005b6001546040516001600160a01b038381166024830152600092839283929091169060440160408051601f198184030181529181526020820180516001600160e01b0316631177d94d60e21b1790525161013f91906102ae565b600060405180830381855af49150503d806000811461017a576040519150601f19603f3d011682016040523d82523d6000602084013e61017f565b606091505b5091509150816101cb5760405162461bcd60e51b815260206004820152601360248201527219195b1959d85d1950d85b1b0819985a5b1959606a1b604482015260640160405180910390fd5b604080516001600160a01b038616815283151560208201527fc684ea12dba6e6e1178ce8714e05282cc73273b3390041bb5bbe72fa9d5d3a82910160405180910390a18080602001905181019061022291906102e9565b949350505050565b600180546001600160a01b0319166001600160a01b0383169081179091556040519081527f4c07b1246bd2051a9f99c2bb74ed771ddcdd2fbfb030741c7c61308051a584ef9060200160405180910390a150565b60006020828403121561029057600080fd5b81356001600160a01b03811681146102a757600080fd5b9392505050565b6000825160005b818110156102cf57602081860181015185830152016102b5565b818111156102de576000828501525b509190910192915050565b6000602082840312156102fb57600080fd5b505191905056fea26469706673582212200130bb6016bf5e6225764e9593ca4f76505868e529dbe2ec2743a08a8f6b65b164736f6c634300080d0033",
-  "deployedSourceMap": "57:2014:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;296:29;;;;;-1:-1:-1;;;;;296:29:1;;;;;;-1:-1:-1;;;;;178:32:2;;;160:51;;148:2;133:18;296:29:1;;;;;;;;1657:412;;;;;;:::i;:::-;;:::i;:::-;;;659:25:2;;;647:2;632:18;1657:412:1;513:177:2;1375:97:1;1451:14;;-1:-1:-1;;;;;1451:14:1;1375:97;;268:22;;;;;-1:-1:-1;;;;;268:22:1;;;1208:161;;;;;;:::i;:::-;;:::i;:::-;;1657:412;1791:14;;1828:65;;-1:-1:-1;;;;;178:32:2;;;1828:65:1;;;160:51:2;1729:7:1;;;;;;1791:14;;;;133:18:2;;1828:65:1;;;-1:-1:-1;;1828:65:1;;;;;;;;;;;;;;-1:-1:-1;;;;;1828:65:1;-1:-1:-1;;;1828:65:1;;;1791:112;;;1828:65;1791:112;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1747:156;;;;1921:7;1913:39;;;;-1:-1:-1;;;1913:39:1;;1328:2:2;1913:39:1;;;1310:21:2;1367:2;1347:18;;;1340:30;-1:-1:-1;;;1386:18:2;;;1379:49;1445:18;;1913:39:1;;;;;;;;1968:42;;;-1:-1:-1;;;;;1660:32:2;;1642:51;;1736:14;;1729:22;1724:2;1709:18;;1702:50;1968:42:1;;1615:18:2;1968:42:1;;;;;;;2038:12;2027:35;;;;;;;;;;;;:::i;:::-;2020:42;1657:412;-1:-1:-1;;;;1657:412:1:o;1208:161::-;1279:14;:32;;-1:-1:-1;;;;;;1279:32:1;-1:-1:-1;;;;;1279:32:1;;;;;;;;1326:36;;160:51:2;;;1326:36:1;;148:2:2;133:18;1326:36:1;;;;;;;1208:161;:::o;222:286:2:-;281:6;334:2;322:9;313:7;309:23;305:32;302:52;;;350:1;347;340:12;302:52;376:23;;-1:-1:-1;;;;;428:31:2;;418:42;;408:70;;474:1;471;464:12;408:70;497:5;222:286;-1:-1:-1;;;222:286:2:o;695:426::-;824:3;862:6;856:13;887:1;897:129;911:6;908:1;905:13;897:129;;;1009:4;993:14;;;989:25;;983:32;970:11;;;963:53;926:12;897:129;;;1044:6;1041:1;1038:13;1035:48;;;1079:1;1070:6;1065:3;1061:16;1054:27;1035:48;-1:-1:-1;1099:16:2;;;;;695:426;-1:-1:-1;;695:426:2:o;1763:184::-;1833:6;1886:2;1874:9;1865:7;1861:23;1857:32;1854:52;;;1902:1;1899;1892:12;1854:52;-1:-1:-1;1925:16:2;;1763:184;-1:-1:-1;1763:184:2:o",
+  "deployedBytecode": "608060405234801561001057600080fd5b50600436106100575760003560e01c806319ab453c1461005c5780635c60da1b146100715780639de0514e146100a0578063aaf10f42146100b3578063c45a0155146100c4575b600080fd5b61006f61006a36600461028a565b6100d7565b005b600154610084906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b61006f6100ae36600461028a565b610161565b6001546001600160a01b0316610084565b600054610084906001600160a01b031681565b600154600160a01b900460ff16156101275760405162461bcd60e51b815260206004820152600e60248201526d1b9bc81cd958dbdb99081a5b9a5d60921b60448201526064015b60405180910390fd5b600080546001600160a01b03191633179055600180546001600160a81b0319166001600160a01b039290921691909117600160a01b179055565b6001546040516001600160a01b038381166024830152600092839291169060440160408051601f198184030181529181526020820180516001600160e01b0316631177d94d60e21b179052516101b791906102ba565b600060405180830381855af49150503d80600081146101f2576040519150601f19603f3d011682016040523d82523d6000602084013e6101f7565b606091505b50915091508161023f5760405162461bcd60e51b815260206004820152601360248201527219195b1959d85d1950d85b1b0819985a5b1959606a1b604482015260640161011e565b7f63a242a632efe33c0e210e04e4173612a17efa4f16aa4890bc7e46caece80de08180602001905181019061027491906102f5565b60405190815260200160405180910390a1505050565b60006020828403121561029c57600080fd5b81356001600160a01b03811681146102b357600080fd5b9392505050565b6000825160005b818110156102db57602081860181015185830152016102c1565b818111156102ea576000828501525b509190910192915050565b60006020828403121561030757600080fd5b505191905056fea26469706673582212204ff28362a773398b7301f9c09e570b90030b97277a78331905084bdf645bab2d64736f6c634300080d0033",
+  "deployedSourceMap": "57:1916:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;957:197;;;;;;:::i;:::-;;:::i;:::-;;296:29;;;;;-1:-1:-1;;;;;296:29:1;;;;;;-1:-1:-1;;;;;469:32:2;;;451:51;;439:2;424:18;296:29:1;;;;;;;1629:342;;;;;;:::i;:::-;;:::i;1340:97::-;1416:14;;-1:-1:-1;;;;;1416:14:1;1340:97;;268:22;;;;;-1:-1:-1;;;;;268:22:1;;;957:197;1024:8;;-1:-1:-1;;;1024:8:1;;;;1023:9;1015:35;;;;-1:-1:-1;;;1015:35:1;;715:2:2;1015:35:1;;;697:21:2;754:2;734:18;;;727:30;-1:-1:-1;;;773:18:2;;;766:44;827:18;;1015:35:1;;;;;;;;;1060:7;:20;;-1:-1:-1;;;;;;1060:20:1;1070:10;1060:20;;;;1090:32;;-1:-1:-1;;;;;;1132:15:1;-1:-1:-1;;;;;1090:32:1;;;;1132:15;;;;-1:-1:-1;;;1132:15:1;;;957:197::o;1629:342::-;1747:14;;1784:65;;-1:-1:-1;;;;;469:32:2;;;1784:65:1;;;451:51:2;1704:12:1;;;;1747:14;;;424:18:2;;1784:65:1;;;-1:-1:-1;;1784:65:1;;;;;;;;;;;;;;-1:-1:-1;;;;;1784:65:1;-1:-1:-1;;;1784:65:1;;;1747:112;;;1784:65;1747:112;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1703:156;;;;1877:7;1869:39;;;;-1:-1:-1;;;1869:39:1;;1489:2:2;1869:39:1;;;1471:21:2;1528:2;1508:18;;;1501:30;-1:-1:-1;;;1547:18:2;;;1540:49;1606:18;;1869:39:1;1287:343:2;1869:39:1;1923:41;1939:12;1928:35;;;;;;;;;;;;:::i;:::-;1923:41;;1970:25:2;;;1958:2;1943:18;1923:41:1;;;;;;;1693:278;;1629:342;:::o;14:286:2:-;73:6;126:2;114:9;105:7;101:23;97:32;94:52;;;142:1;139;132:12;94:52;168:23;;-1:-1:-1;;;;;220:31:2;;210:42;;200:70;;266:1;263;256:12;200:70;289:5;14:286;-1:-1:-1;;;14:286:2:o;856:426::-;985:3;1023:6;1017:13;1048:1;1058:129;1072:6;1069:1;1066:13;1058:129;;;1170:4;1154:14;;;1150:25;;1144:32;1131:11;;;1124:53;1087:12;1058:129;;;1205:6;1202:1;1199:13;1196:48;;;1240:1;1231:6;1226:3;1222:16;1215:27;1196:48;-1:-1:-1;1260:16:2;;;;;856:426;-1:-1:-1;;856:426:2:o;1635:184::-;1705:6;1758:2;1746:9;1737:7;1733:23;1729:32;1726:52;;;1774:1;1771;1764:12;1726:52;-1:-1:-1;1797:16:2;;1635:184;-1:-1:-1;1635:184:2:o",
   "language": "Solidity",
   "natspec": {
     "kind": "dev",
@@ -1498,14 +1494,14 @@
   },
   "offset": [
     57,
-    2071
+    1973
   ],
-  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x57 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x5C60DA1B EQ PUSH2 0x5C JUMPI DUP1 PUSH4 0x9DE0514E EQ PUSH2 0x8C JUMPI DUP1 PUSH4 0xAAF10F42 EQ PUSH2 0xAD JUMPI DUP1 PUSH4 0xC45A0155 EQ PUSH2 0xBE JUMPI DUP1 PUSH4 0xD784D426 EQ PUSH2 0xD1 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x1 SLOAD PUSH2 0x6F SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP2 AND DUP2 MSTORE PUSH1 0x20 ADD JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH2 0x9F PUSH2 0x9A CALLDATASIZE PUSH1 0x4 PUSH2 0x27E JUMP JUMPDEST PUSH2 0xE6 JUMP JUMPDEST PUSH1 0x40 MLOAD SWAP1 DUP2 MSTORE PUSH1 0x20 ADD PUSH2 0x83 JUMP JUMPDEST PUSH1 0x1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND PUSH2 0x6F JUMP JUMPDEST PUSH1 0x0 SLOAD PUSH2 0x6F SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH2 0xE4 PUSH2 0xDF CALLDATASIZE PUSH1 0x4 PUSH2 0x27E JUMP JUMPDEST PUSH2 0x22A JUMP JUMPDEST STOP JUMPDEST PUSH1 0x1 SLOAD PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP4 DUP2 AND PUSH1 0x24 DUP4 ADD MSTORE PUSH1 0x0 SWAP3 DUP4 SWAP3 DUP4 SWAP3 SWAP1 SWAP2 AND SWAP1 PUSH1 0x44 ADD PUSH1 0x40 DUP1 MLOAD PUSH1 0x1F NOT DUP2 DUP5 SUB ADD DUP2 MSTORE SWAP2 DUP2 MSTORE PUSH1 0x20 DUP3 ADD DUP1 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xE0 SHL SUB AND PUSH4 0x1177D94D PUSH1 0xE2 SHL OR SWAP1 MSTORE MLOAD PUSH2 0x13F SWAP2 SWAP1 PUSH2 0x2AE JUMP JUMPDEST PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 DUP6 GAS DELEGATECALL SWAP2 POP POP RETURNDATASIZE DUP1 PUSH1 0x0 DUP2 EQ PUSH2 0x17A JUMPI PUSH1 0x40 MLOAD SWAP2 POP PUSH1 0x1F NOT PUSH1 0x3F RETURNDATASIZE ADD AND DUP3 ADD PUSH1 0x40 MSTORE RETURNDATASIZE DUP3 MSTORE RETURNDATASIZE PUSH1 0x0 PUSH1 0x20 DUP5 ADD RETURNDATACOPY PUSH2 0x17F JUMP JUMPDEST PUSH1 0x60 SWAP2 POP JUMPDEST POP SWAP2 POP SWAP2 POP DUP2 PUSH2 0x1CB JUMPI PUSH1 0x40 MLOAD PUSH3 0x461BCD PUSH1 0xE5 SHL DUP2 MSTORE PUSH1 0x20 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x13 PUSH1 0x24 DUP3 ADD MSTORE PUSH19 0x19195B1959D85D1950D85B1B0819985A5B1959 PUSH1 0x6A SHL PUSH1 0x44 DUP3 ADD MSTORE PUSH1 0x64 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 REVERT JUMPDEST PUSH1 0x40 DUP1 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP7 AND DUP2 MSTORE DUP4 ISZERO ISZERO PUSH1 0x20 DUP3 ADD MSTORE PUSH32 0xC684EA12DBA6E6E1178CE8714E05282CC73273B3390041BB5BBE72FA9D5D3A82 SWAP2 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 LOG1 DUP1 DUP1 PUSH1 0x20 ADD SWAP1 MLOAD DUP2 ADD SWAP1 PUSH2 0x222 SWAP2 SWAP1 PUSH2 0x2E9 JUMP JUMPDEST SWAP5 SWAP4 POP POP POP POP JUMP JUMPDEST PUSH1 0x1 DUP1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB NOT AND PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP4 AND SWAP1 DUP2 OR SWAP1 SWAP2 SSTORE PUSH1 0x40 MLOAD SWAP1 DUP2 MSTORE PUSH32 0x4C07B1246BD2051A9F99C2BB74ED771DDCDD2FBFB030741C7C61308051A584EF SWAP1 PUSH1 0x20 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 LOG1 POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x290 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 CALLDATALOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP2 AND DUP2 EQ PUSH2 0x2A7 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST SWAP4 SWAP3 POP POP POP JUMP JUMPDEST PUSH1 0x0 DUP3 MLOAD PUSH1 0x0 JUMPDEST DUP2 DUP2 LT ISZERO PUSH2 0x2CF JUMPI PUSH1 0x20 DUP2 DUP7 ADD DUP2 ADD MLOAD DUP6 DUP4 ADD MSTORE ADD PUSH2 0x2B5 JUMP JUMPDEST DUP2 DUP2 GT ISZERO PUSH2 0x2DE JUMPI PUSH1 0x0 DUP3 DUP6 ADD MSTORE JUMPDEST POP SWAP2 SWAP1 SWAP2 ADD SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x2FB JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP MLOAD SWAP2 SWAP1 POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 ADD ADDRESS 0xBB PUSH1 0x16 0xBF 0x5E PUSH3 0x25764E SWAP6 SWAP4 0xCA 0x4F PUSH23 0x505868E529DBE2EC2743A08A8F6B65B164736F6C634300 ADDMOD 0xD STOP CALLER ",
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x57 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x19AB453C EQ PUSH2 0x5C JUMPI DUP1 PUSH4 0x5C60DA1B EQ PUSH2 0x71 JUMPI DUP1 PUSH4 0x9DE0514E EQ PUSH2 0xA0 JUMPI DUP1 PUSH4 0xAAF10F42 EQ PUSH2 0xB3 JUMPI DUP1 PUSH4 0xC45A0155 EQ PUSH2 0xC4 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x6F PUSH2 0x6A CALLDATASIZE PUSH1 0x4 PUSH2 0x28A JUMP JUMPDEST PUSH2 0xD7 JUMP JUMPDEST STOP JUMPDEST PUSH1 0x1 SLOAD PUSH2 0x84 SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP2 AND DUP2 MSTORE PUSH1 0x20 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH2 0x6F PUSH2 0xAE CALLDATASIZE PUSH1 0x4 PUSH2 0x28A JUMP JUMPDEST PUSH2 0x161 JUMP JUMPDEST PUSH1 0x1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND PUSH2 0x84 JUMP JUMPDEST PUSH1 0x0 SLOAD PUSH2 0x84 SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH1 0x1 SLOAD PUSH1 0x1 PUSH1 0xA0 SHL SWAP1 DIV PUSH1 0xFF AND ISZERO PUSH2 0x127 JUMPI PUSH1 0x40 MLOAD PUSH3 0x461BCD PUSH1 0xE5 SHL DUP2 MSTORE PUSH1 0x20 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0xE PUSH1 0x24 DUP3 ADD MSTORE PUSH14 0x1B9BC81CD958DBDB99081A5B9A5D PUSH1 0x92 SHL PUSH1 0x44 DUP3 ADD MSTORE PUSH1 0x64 ADD JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 REVERT JUMPDEST PUSH1 0x0 DUP1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB NOT AND CALLER OR SWAP1 SSTORE PUSH1 0x1 DUP1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA8 SHL SUB NOT AND PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP3 SWAP1 SWAP3 AND SWAP2 SWAP1 SWAP2 OR PUSH1 0x1 PUSH1 0xA0 SHL OR SWAP1 SSTORE JUMP JUMPDEST PUSH1 0x1 SLOAD PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP4 DUP2 AND PUSH1 0x24 DUP4 ADD MSTORE PUSH1 0x0 SWAP3 DUP4 SWAP3 SWAP2 AND SWAP1 PUSH1 0x44 ADD PUSH1 0x40 DUP1 MLOAD PUSH1 0x1F NOT DUP2 DUP5 SUB ADD DUP2 MSTORE SWAP2 DUP2 MSTORE PUSH1 0x20 DUP3 ADD DUP1 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xE0 SHL SUB AND PUSH4 0x1177D94D PUSH1 0xE2 SHL OR SWAP1 MSTORE MLOAD PUSH2 0x1B7 SWAP2 SWAP1 PUSH2 0x2BA JUMP JUMPDEST PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 DUP6 GAS DELEGATECALL SWAP2 POP POP RETURNDATASIZE DUP1 PUSH1 0x0 DUP2 EQ PUSH2 0x1F2 JUMPI PUSH1 0x40 MLOAD SWAP2 POP PUSH1 0x1F NOT PUSH1 0x3F RETURNDATASIZE ADD AND DUP3 ADD PUSH1 0x40 MSTORE RETURNDATASIZE DUP3 MSTORE RETURNDATASIZE PUSH1 0x0 PUSH1 0x20 DUP5 ADD RETURNDATACOPY PUSH2 0x1F7 JUMP JUMPDEST PUSH1 0x60 SWAP2 POP JUMPDEST POP SWAP2 POP SWAP2 POP DUP2 PUSH2 0x23F JUMPI PUSH1 0x40 MLOAD PUSH3 0x461BCD PUSH1 0xE5 SHL DUP2 MSTORE PUSH1 0x20 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x13 PUSH1 0x24 DUP3 ADD MSTORE PUSH19 0x19195B1959D85D1950D85B1B0819985A5B1959 PUSH1 0x6A SHL PUSH1 0x44 DUP3 ADD MSTORE PUSH1 0x64 ADD PUSH2 0x11E JUMP JUMPDEST PUSH32 0x63A242A632EFE33C0E210E04E4173612A17EFA4F16AA4890BC7E46CAECE80DE0 DUP2 DUP1 PUSH1 0x20 ADD SWAP1 MLOAD DUP2 ADD SWAP1 PUSH2 0x274 SWAP2 SWAP1 PUSH2 0x2F5 JUMP JUMPDEST PUSH1 0x40 MLOAD SWAP1 DUP2 MSTORE PUSH1 0x20 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 LOG1 POP POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x29C JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 CALLDATALOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP2 AND DUP2 EQ PUSH2 0x2B3 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST SWAP4 SWAP3 POP POP POP JUMP JUMPDEST PUSH1 0x0 DUP3 MLOAD PUSH1 0x0 JUMPDEST DUP2 DUP2 LT ISZERO PUSH2 0x2DB JUMPI PUSH1 0x20 DUP2 DUP7 ADD DUP2 ADD MLOAD DUP6 DUP4 ADD MSTORE ADD PUSH2 0x2C1 JUMP JUMPDEST DUP2 DUP2 GT ISZERO PUSH2 0x2EA JUMPI PUSH1 0x0 DUP3 DUP6 ADD MSTORE JUMPDEST POP SWAP2 SWAP1 SWAP2 ADD SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x307 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP MLOAD SWAP2 SWAP1 POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0x4F CALLCODE DUP4 PUSH3 0xA77339 DUP12 PUSH20 0x1F9C09E570B90030B97277A78331905084BDF64 JUMPDEST 0xAB 0x2D PUSH5 0x736F6C6343 STOP ADDMOD 0xD STOP CALLER ",
   "pcMap": {
     "0": {
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH1",
       "path": "1",
@@ -1515,7 +1511,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH1",
       "path": "1",
@@ -1525,7 +1521,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "MSTORE",
       "path": "1"
@@ -1534,7 +1530,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "CALLVALUE",
       "path": "1"
@@ -1543,7 +1539,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "DUP1",
       "path": "1"
@@ -1552,7 +1548,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "ISZERO",
       "path": "1"
@@ -1561,7 +1557,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH2",
       "path": "1",
@@ -1571,7 +1567,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPI",
       "path": "1"
@@ -1580,7 +1576,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH1",
       "path": "1",
@@ -1590,7 +1586,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "DUP1",
       "path": "1"
@@ -1600,7 +1596,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "REVERT",
       "path": "1"
@@ -1609,7 +1605,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPDEST",
       "path": "1"
@@ -1618,7 +1614,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "POP",
       "path": "1"
@@ -1627,7 +1623,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH1",
       "path": "1",
@@ -1637,7 +1633,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "CALLDATASIZE",
       "path": "1"
@@ -1646,7 +1642,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "LT",
       "path": "1"
@@ -1655,7 +1651,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH2",
       "path": "1",
@@ -1665,7 +1661,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPI",
       "path": "1"
@@ -1674,7 +1670,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH1",
       "path": "1",
@@ -1684,7 +1680,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "CALLDATALOAD",
       "path": "1"
@@ -1693,7 +1689,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH1",
       "path": "1",
@@ -1703,7 +1699,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "SHR",
       "path": "1"
@@ -1712,7 +1708,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "DUP1",
       "path": "1"
@@ -1721,17 +1717,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH4",
       "path": "1",
-      "value": "0x5C60DA1B"
+      "value": "0x19AB453C"
     },
     "38": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "EQ",
       "path": "1"
@@ -1740,7 +1736,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH2",
       "path": "1",
@@ -1750,7 +1746,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPI",
       "path": "1"
@@ -1759,7 +1755,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "DUP1",
       "path": "1"
@@ -1768,17 +1764,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH4",
       "path": "1",
-      "value": "0x9DE0514E"
+      "value": "0x5C60DA1B"
     },
     "49": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "EQ",
       "path": "1"
@@ -1787,17 +1783,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0x8C"
+      "value": "0x71"
     },
     "53": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPI",
       "path": "1"
@@ -1806,7 +1802,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "DUP1",
       "path": "1"
@@ -1815,17 +1811,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH4",
       "path": "1",
-      "value": "0xAAF10F42"
+      "value": "0x9DE0514E"
     },
     "60": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "EQ",
       "path": "1"
@@ -1834,17 +1830,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0xAD"
+      "value": "0xA0"
     },
     "64": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPI",
       "path": "1"
@@ -1853,7 +1849,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "DUP1",
       "path": "1"
@@ -1862,17 +1858,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH4",
       "path": "1",
-      "value": "0xC45A0155"
+      "value": "0xAAF10F42"
     },
     "71": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "EQ",
       "path": "1"
@@ -1881,17 +1877,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0xBE"
+      "value": "0xB3"
     },
     "75": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPI",
       "path": "1"
@@ -1900,7 +1896,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "DUP1",
       "path": "1"
@@ -1909,17 +1905,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH4",
       "path": "1",
-      "value": "0xD784D426"
+      "value": "0xC45A0155"
     },
     "82": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "EQ",
       "path": "1"
@@ -1928,17 +1924,17 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0xD1"
+      "value": "0xC4"
     },
     "86": {
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPI",
       "path": "1"
@@ -1947,7 +1943,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "JUMPDEST",
       "path": "1"
@@ -1956,7 +1952,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "PUSH1",
       "path": "1",
@@ -1966,7 +1962,7 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "DUP1",
       "path": "1"
@@ -1976,12 +1972,127 @@
       "fn": null,
       "offset": [
         57,
-        2071
+        1973
       ],
       "op": "REVERT",
       "path": "1"
     },
     "92": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "93": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x6F"
+    },
+    "96": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x6A"
+    },
+    "99": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "CALLDATASIZE",
+      "path": "1"
+    },
+    "100": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x4"
+    },
+    "102": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x28A"
+    },
+    "105": {
+      "fn": "Vault.init",
+      "jump": "i",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "106": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "107": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0xD7"
+    },
+    "110": {
+      "fn": "Vault.init",
+      "jump": "i",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "111": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "112": {
+      "fn": "Vault.init",
+      "offset": [
+        957,
+        1154
+      ],
+      "op": "STOP",
+      "path": "1"
+    },
+    "113": {
       "offset": [
         296,
         325
@@ -1989,8 +2100,8 @@
       "op": "JUMPDEST",
       "path": "1"
     },
-    "93": {
-      "fn": null,
+    "114": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -1999,8 +2110,8 @@
       "path": "1",
       "value": "0x1"
     },
-    "95": {
-      "fn": null,
+    "116": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2008,18 +2119,18 @@
       "op": "SLOAD",
       "path": "1"
     },
-    "96": {
-      "fn": null,
+    "117": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0x6F"
+      "value": "0x84"
     },
-    "99": {
-      "fn": null,
+    "120": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2027,25 +2138,25 @@
       "op": "SWAP1",
       "path": "1"
     },
-    "100": {
+    "121": {
       "op": "PUSH1",
       "value": "0x1"
     },
-    "102": {
+    "123": {
       "op": "PUSH1",
       "value": "0x1"
     },
-    "104": {
+    "125": {
       "op": "PUSH1",
       "value": "0xA0"
     },
-    "106": {
+    "127": {
       "op": "SHL"
     },
-    "107": {
+    "128": {
       "op": "SUB"
     },
-    "108": {
+    "129": {
       "offset": [
         296,
         325
@@ -2053,8 +2164,8 @@
       "op": "AND",
       "path": "1"
     },
-    "109": {
-      "fn": null,
+    "130": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2062,8 +2173,8 @@
       "op": "DUP2",
       "path": "1"
     },
-    "110": {
-      "fn": null,
+    "131": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2071,8 +2182,8 @@
       "op": "JUMP",
       "path": "1"
     },
-    "111": {
-      "fn": null,
+    "132": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2080,8 +2191,8 @@
       "op": "JUMPDEST",
       "path": "1"
     },
-    "112": {
-      "fn": null,
+    "133": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2090,8 +2201,8 @@
       "path": "1",
       "value": "0x40"
     },
-    "114": {
-      "fn": null,
+    "135": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2099,56 +2210,47 @@
       "op": "MLOAD",
       "path": "1"
     },
-    "115": {
+    "136": {
       "op": "PUSH1",
       "value": "0x1"
     },
-    "117": {
+    "138": {
       "op": "PUSH1",
       "value": "0x1"
     },
-    "119": {
+    "140": {
       "op": "PUSH1",
       "value": "0xA0"
     },
-    "121": {
+    "142": {
       "op": "SHL"
     },
-    "122": {
+    "143": {
       "op": "SUB"
     },
-    "123": {
+    "144": {
       "op": "SWAP1"
     },
-    "124": {
+    "145": {
       "op": "SWAP2"
     },
-    "125": {
+    "146": {
       "op": "AND"
     },
-    "126": {
+    "147": {
       "op": "DUP2"
     },
-    "127": {
+    "148": {
       "op": "MSTORE"
     },
-    "128": {
+    "149": {
       "op": "PUSH1",
       "value": "0x20"
     },
-    "130": {
+    "151": {
       "op": "ADD"
     },
-    "131": {
-      "offset": [
-        296,
-        325
-      ],
-      "op": "JUMPDEST",
-      "path": "1"
-    },
-    "132": {
-      "fn": null,
+    "152": {
       "offset": [
         296,
         325
@@ -2157,8 +2259,8 @@
       "path": "1",
       "value": "0x40"
     },
-    "134": {
-      "fn": null,
+    "154": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2166,8 +2268,8 @@
       "op": "MLOAD",
       "path": "1"
     },
-    "135": {
-      "fn": null,
+    "155": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2175,8 +2277,8 @@
       "op": "DUP1",
       "path": "1"
     },
-    "136": {
-      "fn": null,
+    "156": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2184,8 +2286,8 @@
       "op": "SWAP2",
       "path": "1"
     },
-    "137": {
-      "fn": null,
+    "157": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2193,8 +2295,8 @@
       "op": "SUB",
       "path": "1"
     },
-    "138": {
-      "fn": null,
+    "158": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2202,8 +2304,8 @@
       "op": "SWAP1",
       "path": "1"
     },
-    "139": {
-      "fn": null,
+    "159": {
+      "fn": "Vault.init",
       "offset": [
         296,
         325
@@ -2211,236 +2313,179 @@
       "op": "RETURN",
       "path": "1"
     },
-    "140": {
+    "160": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1657,
-        2069
+        1629,
+        1971
       ],
       "op": "JUMPDEST",
       "path": "1"
     },
-    "141": {
+    "161": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1657,
-        2069
+        1629,
+        1971
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0x9F"
+      "value": "0x6F"
     },
-    "144": {
+    "164": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1657,
-        2069
+        1629,
+        1971
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0x9A"
+      "value": "0xAE"
     },
-    "147": {
+    "167": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1657,
-        2069
+        1629,
+        1971
       ],
       "op": "CALLDATASIZE",
       "path": "1"
     },
-    "148": {
+    "168": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1657,
-        2069
+        1629,
+        1971
       ],
       "op": "PUSH1",
       "path": "1",
       "value": "0x4"
     },
-    "150": {
+    "170": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1657,
-        2069
+        1629,
+        1971
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0x27E"
-    },
-    "153": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "jump": "i",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "JUMP",
-      "path": "1"
-    },
-    "154": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "JUMPDEST",
-      "path": "1"
-    },
-    "155": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0xE6"
-    },
-    "158": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "jump": "i",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "JUMP",
-      "path": "1"
-    },
-    "159": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "JUMPDEST",
-      "path": "1"
-    },
-    "160": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x40"
-    },
-    "162": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "MLOAD",
-      "path": "1"
-    },
-    "163": {
-      "op": "SWAP1"
-    },
-    "164": {
-      "op": "DUP2"
-    },
-    "165": {
-      "op": "MSTORE"
-    },
-    "166": {
-      "op": "PUSH1",
-      "value": "0x20"
-    },
-    "168": {
-      "op": "ADD"
-    },
-    "169": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x83"
-    },
-    "172": {
-      "op": "JUMP"
+      "value": "0x28A"
     },
     "173": {
-      "fn": "Vault.getImplementation",
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "jump": "i",
       "offset": [
-        1375,
-        1472
+        1629,
+        1971
       ],
-      "op": "JUMPDEST",
+      "op": "JUMP",
       "path": "1"
     },
     "174": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1629,
+        1971
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "175": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1629,
+        1971
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x161"
+    },
+    "178": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "jump": "i",
+      "offset": [
+        1629,
+        1971
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "179": {
       "fn": "Vault.getImplementation",
       "offset": [
-        1451,
-        1465
+        1340,
+        1437
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "180": {
+      "fn": "Vault.getImplementation",
+      "offset": [
+        1416,
+        1430
       ],
       "op": "PUSH1",
       "path": "1",
       "statement": 0,
       "value": "0x1"
     },
-    "176": {
+    "182": {
       "fn": "Vault.getImplementation",
       "offset": [
-        1451,
-        1465
+        1416,
+        1430
       ],
       "op": "SLOAD",
       "path": "1"
     },
-    "177": {
+    "183": {
       "op": "PUSH1",
       "value": "0x1"
     },
-    "179": {
+    "185": {
       "op": "PUSH1",
       "value": "0x1"
     },
-    "181": {
+    "187": {
       "op": "PUSH1",
       "value": "0xA0"
     },
-    "183": {
+    "189": {
       "op": "SHL"
     },
-    "184": {
+    "190": {
       "op": "SUB"
     },
-    "185": {
+    "191": {
       "fn": "Vault.getImplementation",
       "offset": [
-        1451,
-        1465
+        1416,
+        1430
       ],
       "op": "AND",
       "path": "1"
     },
-    "186": {
+    "192": {
       "fn": "Vault.getImplementation",
       "offset": [
-        1375,
-        1472
+        1340,
+        1437
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0x6F"
+      "value": "0x84"
     },
-    "189": {
+    "195": {
       "fn": "Vault.getImplementation",
       "offset": [
-        1375,
-        1472
+        1340,
+        1437
       ],
       "op": "JUMP",
       "path": "1"
     },
-    "190": {
+    "196": {
       "offset": [
         268,
         290
@@ -2448,7 +2493,7 @@
       "op": "JUMPDEST",
       "path": "1"
     },
-    "191": {
+    "197": {
       "fn": "Vault.getImplementation",
       "offset": [
         268,
@@ -2458,7 +2503,7 @@
       "path": "1",
       "value": "0x0"
     },
-    "193": {
+    "199": {
       "fn": "Vault.getImplementation",
       "offset": [
         268,
@@ -2467,7 +2512,7 @@
       "op": "SLOAD",
       "path": "1"
     },
-    "194": {
+    "200": {
       "fn": "Vault.getImplementation",
       "offset": [
         268,
@@ -2475,9 +2520,9 @@
       ],
       "op": "PUSH2",
       "path": "1",
-      "value": "0x6F"
+      "value": "0x84"
     },
-    "197": {
+    "203": {
       "fn": "Vault.getImplementation",
       "offset": [
         268,
@@ -2486,25 +2531,25 @@
       "op": "SWAP1",
       "path": "1"
     },
-    "198": {
+    "204": {
       "op": "PUSH1",
       "value": "0x1"
     },
-    "200": {
+    "206": {
       "op": "PUSH1",
       "value": "0x1"
     },
-    "202": {
+    "208": {
       "op": "PUSH1",
       "value": "0xA0"
     },
-    "204": {
+    "210": {
       "op": "SHL"
     },
-    "205": {
+    "211": {
       "op": "SUB"
     },
-    "206": {
+    "212": {
       "offset": [
         268,
         290
@@ -2512,7 +2557,7 @@
       "op": "AND",
       "path": "1"
     },
-    "207": {
+    "213": {
       "fn": "Vault.getImplementation",
       "offset": [
         268,
@@ -2521,7 +2566,7 @@
       "op": "DUP2",
       "path": "1"
     },
-    "208": {
+    "214": {
       "fn": "Vault.getImplementation",
       "offset": [
         268,
@@ -2530,219 +2575,189 @@
       "op": "JUMP",
       "path": "1"
     },
-    "209": {
-      "fn": "Vault.setImplementation",
+    "215": {
+      "fn": "Vault.init",
       "offset": [
-        1208,
-        1369
+        957,
+        1154
       ],
       "op": "JUMPDEST",
       "path": "1"
-    },
-    "210": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0xE4"
-    },
-    "213": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0xDF"
     },
     "216": {
-      "fn": "Vault.setImplementation",
+      "fn": "Vault.init",
       "offset": [
-        1208,
-        1369
-      ],
-      "op": "CALLDATASIZE",
-      "path": "1"
-    },
-    "217": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
+        1024,
+        1032
       ],
       "op": "PUSH1",
       "path": "1",
-      "value": "0x4"
-    },
-    "219": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x27E"
-    },
-    "222": {
-      "fn": "Vault.setImplementation",
-      "jump": "i",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "JUMP",
-      "path": "1"
-    },
-    "223": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "JUMPDEST",
-      "path": "1"
-    },
-    "224": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x22A"
-    },
-    "227": {
-      "fn": "Vault.setImplementation",
-      "jump": "i",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "JUMP",
-      "path": "1"
-    },
-    "228": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "JUMPDEST",
-      "path": "1"
-    },
-    "229": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "STOP",
-      "path": "1"
-    },
-    "230": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "JUMPDEST",
-      "path": "1"
-    },
-    "231": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1805
-      ],
-      "op": "PUSH1",
-      "path": "1",
+      "statement": 1,
       "value": "0x1"
     },
-    "233": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "218": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1805
+        1024,
+        1032
       ],
       "op": "SLOAD",
       "path": "1"
     },
-    "234": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "219": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "221": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "223": {
+      "op": "SHL"
+    },
+    "224": {
+      "fn": "Vault.init",
       "offset": [
-        1828,
-        1893
+        1024,
+        1032
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "225": {
+      "fn": "Vault.init",
+      "offset": [
+        1024,
+        1032
+      ],
+      "op": "DIV",
+      "path": "1"
+    },
+    "226": {
+      "fn": "Vault.init",
+      "offset": [
+        1024,
+        1032
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0xFF"
+    },
+    "228": {
+      "fn": "Vault.init",
+      "offset": [
+        1024,
+        1032
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "229": {
+      "branch": 7,
+      "fn": "Vault.init",
+      "offset": [
+        1023,
+        1032
+      ],
+      "op": "ISZERO",
+      "path": "1"
+    },
+    "230": {
+      "fn": "Vault.init",
+      "offset": [
+        1015,
+        1050
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x127"
+    },
+    "233": {
+      "branch": 7,
+      "fn": "Vault.init",
+      "offset": [
+        1015,
+        1050
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "234": {
+      "fn": "Vault.init",
+      "offset": [
+        1015,
+        1050
       ],
       "op": "PUSH1",
       "path": "1",
       "value": "0x40"
     },
     "236": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
       "offset": [
-        1828,
-        1893
+        1015,
+        1050
       ],
       "op": "MLOAD",
       "path": "1"
     },
     "237": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "239": {
-      "op": "PUSH1",
-      "value": "0x1"
+      "op": "PUSH3",
+      "value": "0x461BCD"
     },
     "241": {
       "op": "PUSH1",
-      "value": "0xA0"
+      "value": "0xE5"
     },
     "243": {
       "op": "SHL"
     },
     "244": {
-      "op": "SUB"
+      "fn": "Vault.init",
+      "offset": [
+        1015,
+        1050
+      ],
+      "op": "DUP2",
+      "path": "1"
     },
     "245": {
-      "op": "DUP4"
+      "fn": "Vault.init",
+      "offset": [
+        1015,
+        1050
+      ],
+      "op": "MSTORE",
+      "path": "1"
     },
     "246": {
-      "op": "DUP2"
-    },
-    "247": {
-      "op": "AND"
+      "op": "PUSH1",
+      "value": "0x20"
     },
     "248": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
       "offset": [
-        1828,
-        1893
+        1015,
+        1050
       ],
       "op": "PUSH1",
       "path": "1",
-      "value": "0x24"
+      "value": "0x4"
     },
     "250": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
       "offset": [
-        1828,
-        1893
+        1015,
+        1050
       ],
-      "op": "DUP4",
+      "op": "DUP3",
       "path": "1"
     },
     "251": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
       "offset": [
-        1828,
-        1893
+        1015,
+        1050
       ],
       "op": "ADD",
       "path": "1"
@@ -2751,836 +2766,576 @@
       "op": "MSTORE"
     },
     "253": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1729,
-        1736
-      ],
       "op": "PUSH1",
-      "path": "1",
-      "value": "0x0"
+      "value": "0xE"
     },
     "255": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1729,
-        1736
-      ],
-      "op": "SWAP3",
-      "path": "1"
-    },
-    "256": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1729,
-        1736
-      ],
-      "op": "DUP4",
-      "path": "1"
+      "op": "PUSH1",
+      "value": "0x24"
     },
     "257": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1729,
-        1736
-      ],
-      "op": "SWAP3",
-      "path": "1"
+      "op": "DUP3"
     },
     "258": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1729,
-        1736
-      ],
-      "op": "DUP4",
-      "path": "1"
+      "op": "ADD"
     },
     "259": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1729,
-        1736
-      ],
-      "op": "SWAP3",
-      "path": "1"
+      "op": "MSTORE"
     },
     "260": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1805
-      ],
-      "op": "SWAP1",
-      "path": "1"
+      "op": "PUSH14",
+      "value": "0x1B9BC81CD958DBDB99081A5B9A5D"
     },
-    "261": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1805
-      ],
-      "op": "SWAP2",
-      "path": "1"
+    "275": {
+      "op": "PUSH1",
+      "value": "0x92"
     },
-    "262": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1805
-      ],
-      "op": "AND",
-      "path": "1"
+    "277": {
+      "op": "SHL"
     },
-    "263": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1805
-      ],
-      "op": "SWAP1",
-      "path": "1"
-    },
-    "264": {
+    "278": {
       "op": "PUSH1",
       "value": "0x44"
     },
-    "266": {
-      "op": "ADD"
-    },
-    "267": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x40"
-    },
-    "269": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "DUP1",
-      "path": "1"
-    },
-    "270": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "MLOAD",
-      "path": "1"
-    },
-    "271": {
-      "op": "PUSH1",
-      "value": "0x1F"
-    },
-    "273": {
-      "op": "NOT"
-    },
-    "274": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "DUP2",
-      "path": "1"
-    },
-    "275": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "DUP5",
-      "path": "1"
-    },
-    "276": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "SUB",
-      "path": "1"
-    },
-    "277": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "ADD",
-      "path": "1"
-    },
-    "278": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "DUP2",
-      "path": "1"
-    },
-    "279": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "MSTORE",
-      "path": "1"
-    },
     "280": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "SWAP2",
-      "path": "1"
+      "op": "DUP3"
     },
     "281": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "DUP2",
-      "path": "1"
+      "op": "ADD"
     },
     "282": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "MSTORE",
-      "path": "1"
+      "op": "MSTORE"
     },
     "283": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
       "op": "PUSH1",
-      "path": "1",
-      "value": "0x20"
+      "value": "0x64"
     },
     "285": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "DUP3",
-      "path": "1"
+      "op": "ADD"
     },
     "286": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
       "offset": [
-        1828,
-        1893
-      ],
-      "op": "ADD",
-      "path": "1"
-    },
-    "287": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "DUP1",
-      "path": "1"
-    },
-    "288": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "MLOAD",
-      "path": "1"
-    },
-    "289": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "291": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "293": {
-      "op": "PUSH1",
-      "value": "0xE0"
-    },
-    "295": {
-      "op": "SHL"
-    },
-    "296": {
-      "op": "SUB"
-    },
-    "297": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "AND",
-      "path": "1"
-    },
-    "298": {
-      "op": "PUSH4",
-      "value": "0x1177D94D"
-    },
-    "303": {
-      "op": "PUSH1",
-      "value": "0xE2"
-    },
-    "305": {
-      "op": "SHL"
-    },
-    "306": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "OR",
-      "path": "1"
-    },
-    "307": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "SWAP1",
-      "path": "1"
-    },
-    "308": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "MSTORE",
-      "path": "1"
-    },
-    "309": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "MLOAD",
-      "path": "1"
-    },
-    "310": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x13F"
-    },
-    "313": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "SWAP2",
-      "path": "1"
-    },
-    "314": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1828,
-        1893
-      ],
-      "op": "SWAP1",
-      "path": "1"
-    },
-    "315": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x2AE"
-    },
-    "318": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "jump": "i",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "JUMP",
-      "path": "1"
-    },
-    "319": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
       "op": "JUMPDEST",
       "path": "1"
     },
-    "320": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "287": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x0"
-    },
-    "322": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
       "op": "PUSH1",
       "path": "1",
       "value": "0x40"
     },
-    "324": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "289": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
       "op": "MLOAD",
       "path": "1"
     },
-    "325": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "290": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
       "op": "DUP1",
       "path": "1"
     },
-    "326": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "291": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
-      "op": "DUP4",
+      "op": "SWAP2",
       "path": "1"
     },
-    "327": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "292": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
       "op": "SUB",
       "path": "1"
     },
-    "328": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "293": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
-      "op": "DUP2",
+      "op": "SWAP1",
       "path": "1"
     },
-    "329": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "294": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
-      "op": "DUP6",
+      "op": "REVERT",
+      "optimizer_revert": true,
       "path": "1"
     },
-    "330": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "295": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1015,
+        1050
       ],
-      "op": "GAS",
+      "op": "JUMPDEST",
       "path": "1"
     },
-    "331": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "296": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1060,
+        1067
       ],
-      "op": "DELEGATECALL",
-      "path": "1"
+      "op": "PUSH1",
+      "path": "1",
+      "statement": 2,
+      "value": "0x0"
     },
-    "332": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "298": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
-      ],
-      "op": "SWAP2",
-      "path": "1"
-    },
-    "333": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "POP",
-      "path": "1"
-    },
-    "334": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "POP",
-      "path": "1"
-    },
-    "335": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "RETURNDATASIZE",
-      "path": "1"
-    },
-    "336": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
+        1060,
+        1080
       ],
       "op": "DUP1",
       "path": "1"
     },
-    "337": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "299": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1060,
+        1080
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "300": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "302": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "304": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "306": {
+      "op": "SHL"
+    },
+    "307": {
+      "op": "SUB"
+    },
+    "308": {
+      "op": "NOT"
+    },
+    "309": {
+      "fn": "Vault.init",
+      "offset": [
+        1060,
+        1080
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "310": {
+      "fn": "Vault.init",
+      "offset": [
+        1070,
+        1080
+      ],
+      "op": "CALLER",
+      "path": "1"
+    },
+    "311": {
+      "fn": "Vault.init",
+      "offset": [
+        1060,
+        1080
+      ],
+      "op": "OR",
+      "path": "1"
+    },
+    "312": {
+      "fn": "Vault.init",
+      "offset": [
+        1060,
+        1080
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "313": {
+      "fn": "Vault.init",
+      "offset": [
+        1060,
+        1080
+      ],
+      "op": "SSTORE",
+      "path": "1"
+    },
+    "314": {
+      "fn": "Vault.init",
+      "offset": [
+        1060,
+        1080
       ],
       "op": "PUSH1",
       "path": "1",
-      "value": "0x0"
+      "value": "0x1"
+    },
+    "316": {
+      "fn": "Vault.init",
+      "offset": [
+        1090,
+        1122
+      ],
+      "op": "DUP1",
+      "path": "1",
+      "statement": 3
+    },
+    "317": {
+      "fn": "Vault.init",
+      "offset": [
+        1090,
+        1122
+      ],
+      "op": "SLOAD",
+      "path": "1"
+    },
+    "318": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "320": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "322": {
+      "op": "PUSH1",
+      "value": "0xA8"
+    },
+    "324": {
+      "op": "SHL"
+    },
+    "325": {
+      "op": "SUB"
+    },
+    "326": {
+      "op": "NOT"
+    },
+    "327": {
+      "fn": "Vault.init",
+      "offset": [
+        1132,
+        1147
+      ],
+      "op": "AND",
+      "path": "1",
+      "statement": 4
+    },
+    "328": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "330": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "332": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "334": {
+      "op": "SHL"
+    },
+    "335": {
+      "op": "SUB"
+    },
+    "336": {
+      "fn": "Vault.init",
+      "offset": [
+        1090,
+        1122
+      ],
+      "op": "SWAP3",
+      "path": "1"
+    },
+    "337": {
+      "fn": "Vault.init",
+      "offset": [
+        1090,
+        1122
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "338": {
+      "fn": "Vault.init",
+      "offset": [
+        1090,
+        1122
+      ],
+      "op": "SWAP3",
+      "path": "1"
     },
     "339": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1090,
+        1122
       ],
-      "op": "DUP2",
+      "op": "AND",
       "path": "1"
     },
     "340": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
-      ],
-      "op": "EQ",
-      "path": "1"
-    },
-    "341": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x17A"
-    },
-    "344": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "JUMPI",
-      "path": "1"
-    },
-    "345": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x40"
-    },
-    "347": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "MLOAD",
-      "path": "1"
-    },
-    "348": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
+        1132,
+        1147
       ],
       "op": "SWAP2",
       "path": "1"
     },
-    "349": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+    "341": {
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1132,
+        1147
       ],
-      "op": "POP",
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "342": {
+      "fn": "Vault.init",
+      "offset": [
+        1132,
+        1147
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "343": {
+      "fn": "Vault.init",
+      "offset": [
+        1132,
+        1147
+      ],
+      "op": "OR",
+      "path": "1"
+    },
+    "344": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "346": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "348": {
+      "op": "SHL"
+    },
+    "349": {
+      "fn": "Vault.init",
+      "offset": [
+        1132,
+        1147
+      ],
+      "op": "OR",
       "path": "1"
     },
     "350": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
       "offset": [
-        1791,
-        1903
+        1132,
+        1147
       ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x1F"
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "351": {
+      "fn": "Vault.init",
+      "offset": [
+        1132,
+        1147
+      ],
+      "op": "SSTORE",
+      "path": "1"
     },
     "352": {
-      "fn": "Vault.testDelegateCallPricePerShare",
+      "fn": "Vault.init",
+      "jump": "o",
       "offset": [
-        1791,
-        1903
+        957,
+        1154
       ],
-      "op": "NOT",
+      "op": "JUMP",
       "path": "1"
     },
     "353": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1629,
+        1971
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "354": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1761
       ],
       "op": "PUSH1",
       "path": "1",
-      "value": "0x3F"
-    },
-    "355": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "RETURNDATASIZE",
-      "path": "1"
+      "value": "0x1"
     },
     "356": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1747,
+        1761
       ],
-      "op": "ADD",
+      "op": "SLOAD",
       "path": "1"
     },
     "357": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
-      ],
-      "op": "AND",
-      "path": "1"
-    },
-    "358": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "DUP3",
-      "path": "1"
-    },
-    "359": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "ADD",
-      "path": "1"
-    },
-    "360": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
+        1784,
+        1849
       ],
       "op": "PUSH1",
       "path": "1",
       "value": "0x40"
     },
-    "362": {
+    "359": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1784,
+        1849
       ],
-      "op": "MSTORE",
+      "op": "MLOAD",
       "path": "1"
     },
-    "363": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "RETURNDATASIZE",
-      "path": "1"
+    "360": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "362": {
+      "op": "PUSH1",
+      "value": "0x1"
     },
     "364": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "DUP3",
-      "path": "1"
-    },
-    "365": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "MSTORE",
-      "path": "1"
+      "op": "PUSH1",
+      "value": "0xA0"
     },
     "366": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "RETURNDATASIZE",
-      "path": "1"
+      "op": "SHL"
     },
     "367": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x0"
+      "op": "SUB"
+    },
+    "368": {
+      "op": "DUP4"
     },
     "369": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x20"
+      "op": "DUP2"
+    },
+    "370": {
+      "op": "AND"
     },
     "371": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1784,
+        1849
       ],
-      "op": "DUP5",
-      "path": "1"
-    },
-    "372": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "ADD",
-      "path": "1"
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x24"
     },
     "373": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1784,
+        1849
       ],
-      "op": "RETURNDATACOPY",
+      "op": "DUP4",
       "path": "1"
     },
     "374": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1784,
+        1849
       ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x17F"
+      "op": "ADD",
+      "path": "1"
     },
-    "377": {
+    "375": {
+      "op": "MSTORE"
+    },
+    "376": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1704,
+        1716
       ],
-      "op": "JUMP",
-      "path": "1"
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
     },
     "378": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1704,
+        1716
       ],
-      "op": "JUMPDEST",
+      "op": "SWAP3",
       "path": "1"
     },
     "379": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1704,
+        1716
       ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x60"
+      "op": "DUP4",
+      "path": "1"
+    },
+    "380": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1704,
+        1716
+      ],
+      "op": "SWAP3",
+      "path": "1"
     },
     "381": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1747,
+        1761
       ],
       "op": "SWAP2",
       "path": "1"
@@ -3588,1290 +3343,1643 @@
     "382": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1747,
+        1761
       ],
-      "op": "POP",
+      "op": "AND",
       "path": "1"
     },
     "383": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1791,
-        1903
+        1747,
+        1761
       ],
-      "op": "JUMPDEST",
+      "op": "SWAP1",
       "path": "1"
     },
     "384": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1791,
-        1903
-      ],
-      "op": "POP",
-      "path": "1"
-    },
-    "385": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1747,
-        1903
-      ],
-      "op": "SWAP2",
-      "path": "1"
+      "op": "PUSH1",
+      "value": "0x44"
     },
     "386": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1747,
-        1903
-      ],
-      "op": "POP",
-      "path": "1"
+      "op": "ADD"
     },
     "387": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1747,
-        1903
+        1784,
+        1849
       ],
-      "op": "SWAP2",
-      "path": "1"
-    },
-    "388": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1747,
-        1903
-      ],
-      "op": "POP",
-      "path": "1"
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
     },
     "389": {
-      "branch": 6,
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1921,
-        1928
+        1784,
+        1849
       ],
-      "op": "DUP2",
-      "path": "1",
-      "statement": 1
+      "op": "DUP1",
+      "path": "1"
     },
     "390": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1784,
+        1849
       ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x1CB"
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "391": {
+      "op": "PUSH1",
+      "value": "0x1F"
     },
     "393": {
-      "branch": 6,
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1913,
-        1952
-      ],
-      "op": "JUMPI",
-      "path": "1"
+      "op": "NOT"
     },
     "394": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x40"
-    },
-    "396": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1913,
-        1952
-      ],
-      "op": "MLOAD",
-      "path": "1"
-    },
-    "397": {
-      "op": "PUSH3",
-      "value": "0x461BCD"
-    },
-    "401": {
-      "op": "PUSH1",
-      "value": "0xE5"
-    },
-    "403": {
-      "op": "SHL"
-    },
-    "404": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1913,
-        1952
+        1784,
+        1849
       ],
       "op": "DUP2",
       "path": "1"
     },
-    "405": {
+    "395": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1784,
+        1849
       ],
-      "op": "MSTORE",
+      "op": "DUP5",
       "path": "1"
     },
-    "406": {
-      "op": "PUSH1",
-      "value": "0x20"
-    },
-    "408": {
+    "396": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1784,
+        1849
       ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x4"
-    },
-    "410": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1913,
-        1952
-      ],
-      "op": "DUP3",
+      "op": "SUB",
       "path": "1"
     },
-    "411": {
+    "397": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1784,
+        1849
       ],
       "op": "ADD",
       "path": "1"
     },
-    "412": {
-      "op": "MSTORE"
+    "398": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "399": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "400": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "401": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "402": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "403": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "405": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "DUP3",
+      "path": "1"
+    },
+    "406": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "407": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "408": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "409": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "411": {
+      "op": "PUSH1",
+      "value": "0x1"
     },
     "413": {
       "op": "PUSH1",
-      "value": "0x13"
+      "value": "0xE0"
     },
     "415": {
-      "op": "PUSH1",
-      "value": "0x24"
-    },
-    "417": {
-      "op": "DUP3"
-    },
-    "418": {
-      "op": "ADD"
-    },
-    "419": {
-      "op": "MSTORE"
-    },
-    "420": {
-      "op": "PUSH19",
-      "value": "0x19195B1959D85D1950D85B1B0819985A5B1959"
-    },
-    "440": {
-      "op": "PUSH1",
-      "value": "0x6A"
-    },
-    "442": {
       "op": "SHL"
     },
-    "443": {
-      "op": "PUSH1",
-      "value": "0x44"
+    "416": {
+      "op": "SUB"
     },
-    "445": {
-      "op": "DUP3"
-    },
-    "446": {
-      "op": "ADD"
-    },
-    "447": {
-      "op": "MSTORE"
-    },
-    "448": {
-      "op": "PUSH1",
-      "value": "0x64"
-    },
-    "450": {
-      "op": "ADD"
-    },
-    "451": {
+    "417": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1784,
+        1849
+      ],
+      "op": "AND",
+      "path": "1"
+    },
+    "418": {
+      "op": "PUSH4",
+      "value": "0x1177D94D"
+    },
+    "423": {
+      "op": "PUSH1",
+      "value": "0xE2"
+    },
+    "425": {
+      "op": "SHL"
+    },
+    "426": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "OR",
+      "path": "1"
+    },
+    "427": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "428": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "429": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "430": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x1B7"
+    },
+    "433": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "434": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1784,
+        1849
+      ],
+      "op": "SWAP1",
+      "path": "1"
+    },
+    "435": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2BA"
+    },
+    "438": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "jump": "i",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "439": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "440": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "442": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
       ],
       "op": "PUSH1",
       "path": "1",
       "value": "0x40"
     },
+    "444": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "445": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "446": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "DUP4",
+      "path": "1"
+    },
+    "447": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "SUB",
+      "path": "1"
+    },
+    "448": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "DUP2",
+      "path": "1"
+    },
+    "449": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "DUP6",
+      "path": "1"
+    },
+    "450": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "GAS",
+      "path": "1"
+    },
+    "451": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "DELEGATECALL",
+      "path": "1"
+    },
+    "452": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
     "453": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1747,
+        1859
       ],
-      "op": "MLOAD",
+      "op": "POP",
       "path": "1"
     },
     "454": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1747,
+        1859
       ],
-      "op": "DUP1",
+      "op": "POP",
       "path": "1"
     },
     "455": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1747,
+        1859
       ],
-      "op": "SWAP2",
+      "op": "RETURNDATASIZE",
       "path": "1"
     },
     "456": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1747,
+        1859
       ],
-      "op": "SUB",
+      "op": "DUP1",
       "path": "1"
     },
     "457": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1747,
+        1859
       ],
-      "op": "SWAP1",
-      "path": "1"
-    },
-    "458": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1913,
-        1952
-      ],
-      "op": "REVERT",
-      "optimizer_revert": true,
-      "path": "1"
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
     },
     "459": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1913,
-        1952
+        1747,
+        1859
       ],
-      "op": "JUMPDEST",
+      "op": "DUP2",
       "path": "1"
     },
     "460": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1968,
-        2010
+        1747,
+        1859
+      ],
+      "op": "EQ",
+      "path": "1"
+    },
+    "461": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x1F2"
+    },
+    "464": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "465": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
       ],
       "op": "PUSH1",
       "path": "1",
-      "statement": 2,
       "value": "0x40"
     },
-    "462": {
+    "467": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1968,
-        2010
-      ],
-      "op": "DUP1",
-      "path": "1"
-    },
-    "463": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1968,
-        2010
+        1747,
+        1859
       ],
       "op": "MLOAD",
       "path": "1"
     },
-    "464": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "466": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
     "468": {
-      "op": "PUSH1",
-      "value": "0xA0"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "469": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "POP",
+      "path": "1"
     },
     "470": {
-      "op": "SHL"
-    },
-    "471": {
-      "op": "SUB"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x1F"
     },
     "472": {
-      "op": "DUP7"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "NOT",
+      "path": "1"
     },
     "473": {
-      "op": "AND"
-    },
-    "474": {
-      "op": "DUP2"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x3F"
     },
     "475": {
-      "op": "MSTORE"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "1"
     },
     "476": {
-      "op": "DUP4"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "ADD",
+      "path": "1"
     },
     "477": {
-      "op": "ISZERO"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "AND",
+      "path": "1"
     },
     "478": {
-      "op": "ISZERO"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "DUP3",
+      "path": "1"
     },
     "479": {
-      "op": "PUSH1",
-      "value": "0x20"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "ADD",
+      "path": "1"
     },
-    "481": {
-      "op": "DUP3"
+    "480": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
     },
     "482": {
-      "op": "ADD"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "MSTORE",
+      "path": "1"
     },
     "483": {
-      "op": "MSTORE"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "1"
     },
     "484": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1968,
-        2010
+        1747,
+        1859
       ],
-      "op": "PUSH32",
-      "path": "1",
-      "value": "0xC684EA12DBA6E6E1178CE8714E05282CC73273B3390041BB5BBE72FA9D5D3A82"
+      "op": "DUP3",
+      "path": "1"
     },
-    "517": {
+    "485": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1968,
-        2010
+        1747,
+        1859
+      ],
+      "op": "MSTORE",
+      "path": "1"
+    },
+    "486": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "1"
+    },
+    "487": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x0"
+    },
+    "489": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "491": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "DUP5",
+      "path": "1"
+    },
+    "492": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "ADD",
+      "path": "1"
+    },
+    "493": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "1"
+    },
+    "494": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x1F7"
+    },
+    "497": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "498": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "499": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x60"
+    },
+    "501": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
       ],
       "op": "SWAP2",
       "path": "1"
     },
-    "518": {
-      "op": "ADD"
-    },
-    "519": {
+    "502": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1968,
-        2010
+        1747,
+        1859
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "503": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
+    },
+    "504": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1747,
+        1859
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "505": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1703,
+        1859
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "506": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1703,
+        1859
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "507": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1703,
+        1859
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
+    "508": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1703,
+        1859
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "509": {
+      "branch": 8,
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1877,
+        1884
+      ],
+      "op": "DUP2",
+      "path": "1",
+      "statement": 5
+    },
+    "510": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1869,
+        1908
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x23F"
+    },
+    "513": {
+      "branch": 8,
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1869,
+        1908
+      ],
+      "op": "JUMPI",
+      "path": "1"
+    },
+    "514": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1869,
+        1908
       ],
       "op": "PUSH1",
       "path": "1",
       "value": "0x40"
     },
-    "521": {
+    "516": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1968,
-        2010
+        1869,
+        1908
       ],
       "op": "MLOAD",
       "path": "1"
     },
-    "522": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1968,
-        2010
-      ],
-      "op": "DUP1",
-      "path": "1"
+    "517": {
+      "op": "PUSH3",
+      "value": "0x461BCD"
+    },
+    "521": {
+      "op": "PUSH1",
+      "value": "0xE5"
     },
     "523": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1968,
-        2010
-      ],
-      "op": "SWAP2",
-      "path": "1"
+      "op": "SHL"
     },
     "524": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1968,
-        2010
+        1869,
+        1908
       ],
-      "op": "SUB",
+      "op": "DUP2",
       "path": "1"
     },
     "525": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1968,
-        2010
+        1869,
+        1908
       ],
-      "op": "SWAP1",
+      "op": "MSTORE",
       "path": "1"
     },
     "526": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1968,
-        2010
-      ],
-      "op": "LOG1",
-      "path": "1"
-    },
-    "527": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        2038,
-        2050
-      ],
-      "op": "DUP1",
-      "path": "1",
-      "statement": 3
+      "op": "PUSH1",
+      "value": "0x20"
     },
     "528": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        2027,
-        2062
-      ],
-      "op": "DUP1",
-      "path": "1"
-    },
-    "529": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        2027,
-        2062
+        1869,
+        1908
       ],
       "op": "PUSH1",
       "path": "1",
-      "value": "0x20"
+      "value": "0x4"
+    },
+    "530": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1869,
+        1908
+      ],
+      "op": "DUP3",
+      "path": "1"
     },
     "531": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        2027,
-        2062
+        1869,
+        1908
       ],
       "op": "ADD",
       "path": "1"
     },
     "532": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        2027,
-        2062
-      ],
-      "op": "SWAP1",
-      "path": "1"
+      "op": "MSTORE"
     },
     "533": {
+      "op": "PUSH1",
+      "value": "0x13"
+    },
+    "535": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "537": {
+      "op": "DUP3"
+    },
+    "538": {
+      "op": "ADD"
+    },
+    "539": {
+      "op": "MSTORE"
+    },
+    "540": {
+      "op": "PUSH19",
+      "value": "0x19195B1959D85D1950D85B1B0819985A5B1959"
+    },
+    "560": {
+      "op": "PUSH1",
+      "value": "0x6A"
+    },
+    "562": {
+      "op": "SHL"
+    },
+    "563": {
+      "op": "PUSH1",
+      "value": "0x44"
+    },
+    "565": {
+      "op": "DUP3"
+    },
+    "566": {
+      "op": "ADD"
+    },
+    "567": {
+      "op": "MSTORE"
+    },
+    "568": {
+      "op": "PUSH1",
+      "value": "0x64"
+    },
+    "570": {
+      "op": "ADD"
+    },
+    "571": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        2027,
-        2062
+        1869,
+        1908
       ],
-      "op": "MLOAD",
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x11E"
+    },
+    "574": {
+      "op": "JUMP"
+    },
+    "575": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1869,
+        1908
+      ],
+      "op": "JUMPDEST",
       "path": "1"
     },
-    "534": {
+    "576": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        2027,
-        2062
+        1923,
+        1964
+      ],
+      "op": "PUSH32",
+      "path": "1",
+      "statement": 6,
+      "value": "0x63A242A632EFE33C0E210E04E4173612A17EFA4F16AA4890BC7E46CAECE80DE0"
+    },
+    "609": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1939,
+        1951
       ],
       "op": "DUP2",
       "path": "1"
     },
-    "535": {
+    "610": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        2027,
-        2062
+        1928,
+        1963
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "611": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1928,
+        1963
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x20"
+    },
+    "613": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1928,
+        1963
       ],
       "op": "ADD",
       "path": "1"
     },
-    "536": {
+    "614": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        2027,
-        2062
+        1928,
+        1963
       ],
       "op": "SWAP1",
       "path": "1"
     },
-    "537": {
+    "615": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        2027,
-        2062
+        1928,
+        1963
       ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x222"
+      "op": "MLOAD",
+      "path": "1"
     },
-    "540": {
+    "616": {
       "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        2027,
-        2062
-      ],
-      "op": "SWAP2",
-      "path": "1"
-    },
-    "541": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        2027,
-        2062
-      ],
-      "op": "SWAP1",
-      "path": "1"
-    },
-    "542": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        2027,
-        2062
-      ],
-      "op": "PUSH2",
-      "path": "1",
-      "value": "0x2E9"
-    },
-    "545": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "jump": "i",
-      "offset": [
-        2027,
-        2062
-      ],
-      "op": "JUMP",
-      "path": "1"
-    },
-    "546": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        2027,
-        2062
-      ],
-      "op": "JUMPDEST",
-      "path": "1"
-    },
-    "547": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        2020,
-        2062
-      ],
-      "op": "SWAP5",
-      "path": "1"
-    },
-    "548": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "SWAP4",
-      "path": "1"
-    },
-    "549": {
-      "op": "POP"
-    },
-    "550": {
-      "op": "POP"
-    },
-    "551": {
-      "op": "POP"
-    },
-    "552": {
-      "op": "POP"
-    },
-    "553": {
-      "fn": "Vault.testDelegateCallPricePerShare",
-      "jump": "o",
-      "offset": [
-        1657,
-        2069
-      ],
-      "op": "JUMP",
-      "path": "1"
-    },
-    "554": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "JUMPDEST",
-      "path": "1"
-    },
-    "555": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1279,
-        1293
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "statement": 4,
-      "value": "0x1"
-    },
-    "557": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1279,
-        1311
-      ],
-      "op": "DUP1",
-      "path": "1"
-    },
-    "558": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1279,
-        1311
-      ],
-      "op": "SLOAD",
-      "path": "1"
-    },
-    "559": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "561": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "563": {
-      "op": "PUSH1",
-      "value": "0xA0"
-    },
-    "565": {
-      "op": "SHL"
-    },
-    "566": {
-      "op": "SUB"
-    },
-    "567": {
-      "op": "NOT"
-    },
-    "568": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1279,
-        1311
-      ],
-      "op": "AND",
-      "path": "1"
-    },
-    "569": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "571": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "573": {
-      "op": "PUSH1",
-      "value": "0xA0"
-    },
-    "575": {
-      "op": "SHL"
-    },
-    "576": {
-      "op": "SUB"
-    },
-    "577": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1279,
-        1311
-      ],
-      "op": "DUP4",
-      "path": "1"
-    },
-    "578": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1279,
-        1311
-      ],
-      "op": "AND",
-      "path": "1"
-    },
-    "579": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1279,
-        1311
-      ],
-      "op": "SWAP1",
-      "path": "1"
-    },
-    "580": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1279,
-        1311
+        1928,
+        1963
       ],
       "op": "DUP2",
       "path": "1"
     },
-    "581": {
-      "fn": "Vault.setImplementation",
+    "617": {
+      "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1279,
-        1311
+        1928,
+        1963
       ],
-      "op": "OR",
+      "op": "ADD",
       "path": "1"
     },
-    "582": {
-      "fn": "Vault.setImplementation",
+    "618": {
+      "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1279,
-        1311
+        1928,
+        1963
       ],
       "op": "SWAP1",
       "path": "1"
     },
-    "583": {
-      "fn": "Vault.setImplementation",
+    "619": {
+      "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1279,
-        1311
+        1928,
+        1963
+      ],
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x274"
+    },
+    "622": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1928,
+        1963
       ],
       "op": "SWAP2",
       "path": "1"
     },
-    "584": {
-      "fn": "Vault.setImplementation",
+    "623": {
+      "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1279,
-        1311
+        1928,
+        1963
       ],
-      "op": "SSTORE",
+      "op": "SWAP1",
       "path": "1"
-    },
-    "585": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "statement": 5,
-      "value": "0x40"
-    },
-    "587": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "MLOAD",
-      "path": "1"
-    },
-    "588": {
-      "op": "SWAP1"
-    },
-    "589": {
-      "op": "DUP2"
-    },
-    "590": {
-      "op": "MSTORE"
-    },
-    "591": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "PUSH32",
-      "path": "1",
-      "value": "0x4C07B1246BD2051A9F99C2BB74ED771DDCDD2FBFB030741C7C61308051A584EF"
     },
     "624": {
-      "fn": "Vault.setImplementation",
+      "fn": "Vault.testDelegateCallPricePerShare",
       "offset": [
-        1326,
-        1362
+        1928,
+        1963
       ],
-      "op": "SWAP1",
-      "path": "1"
-    },
-    "625": {
-      "op": "PUSH1",
-      "value": "0x20"
+      "op": "PUSH2",
+      "path": "1",
+      "value": "0x2F5"
     },
     "627": {
-      "op": "ADD"
-    },
-    "628": {
-      "fn": "Vault.setImplementation",
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "jump": "i",
       "offset": [
-        1326,
-        1362
-      ],
-      "op": "PUSH1",
-      "path": "1",
-      "value": "0x40"
-    },
-    "630": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "MLOAD",
-      "path": "1"
-    },
-    "631": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "DUP1",
-      "path": "1"
-    },
-    "632": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "SWAP2",
-      "path": "1"
-    },
-    "633": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "SUB",
-      "path": "1"
-    },
-    "634": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "SWAP1",
-      "path": "1"
-    },
-    "635": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1326,
-        1362
-      ],
-      "op": "LOG1",
-      "path": "1"
-    },
-    "636": {
-      "fn": "Vault.setImplementation",
-      "offset": [
-        1208,
-        1369
-      ],
-      "op": "POP",
-      "path": "1"
-    },
-    "637": {
-      "fn": "Vault.setImplementation",
-      "jump": "o",
-      "offset": [
-        1208,
-        1369
+        1928,
+        1963
       ],
       "op": "JUMP",
       "path": "1"
     },
-    "638": {
-      "op": "JUMPDEST"
+    "628": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1928,
+        1963
+      ],
+      "op": "JUMPDEST",
+      "path": "1"
     },
-    "639": {
+    "629": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
       "op": "PUSH1",
-      "value": "0x0"
+      "path": "1",
+      "value": "0x40"
     },
-    "641": {
+    "631": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "632": {
+      "op": "SWAP1"
+    },
+    "633": {
+      "op": "DUP2"
+    },
+    "634": {
+      "op": "MSTORE"
+    },
+    "635": {
       "op": "PUSH1",
       "value": "0x20"
     },
+    "637": {
+      "op": "ADD"
+    },
+    "638": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
+      "op": "PUSH1",
+      "path": "1",
+      "value": "0x40"
+    },
+    "640": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
+      "op": "MLOAD",
+      "path": "1"
+    },
+    "641": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
+      "op": "DUP1",
+      "path": "1"
+    },
+    "642": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
+      "op": "SWAP2",
+      "path": "1"
+    },
     "643": {
-      "op": "DUP3"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
+      "op": "SUB",
+      "path": "1"
     },
     "644": {
-      "op": "DUP5"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
+      "op": "SWAP1",
+      "path": "1"
     },
     "645": {
-      "op": "SUB"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1923,
+        1964
+      ],
+      "op": "LOG1",
+      "path": "1"
     },
     "646": {
-      "op": "SLT"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1693,
+        1971
+      ],
+      "op": "POP",
+      "path": "1"
     },
     "647": {
-      "op": "ISZERO"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1693,
+        1971
+      ],
+      "op": "POP",
+      "path": "1"
     },
     "648": {
-      "op": "PUSH2",
-      "value": "0x290"
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "offset": [
+        1629,
+        1971
+      ],
+      "op": "POP",
+      "path": "1"
+    },
+    "649": {
+      "fn": "Vault.testDelegateCallPricePerShare",
+      "jump": "o",
+      "offset": [
+        1629,
+        1971
+      ],
+      "op": "JUMP",
+      "path": "1"
+    },
+    "650": {
+      "op": "JUMPDEST"
     },
     "651": {
-      "op": "JUMPI"
-    },
-    "652": {
       "op": "PUSH1",
       "value": "0x0"
     },
-    "654": {
-      "op": "DUP1"
+    "653": {
+      "op": "PUSH1",
+      "value": "0x20"
     },
     "655": {
-      "op": "REVERT"
+      "op": "DUP3"
     },
     "656": {
-      "op": "JUMPDEST"
+      "op": "DUP5"
     },
     "657": {
-      "op": "DUP2"
-    },
-    "658": {
-      "op": "CALLDATALOAD"
-    },
-    "659": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "661": {
-      "op": "PUSH1",
-      "value": "0x1"
-    },
-    "663": {
-      "op": "PUSH1",
-      "value": "0xA0"
-    },
-    "665": {
-      "op": "SHL"
-    },
-    "666": {
       "op": "SUB"
     },
+    "658": {
+      "op": "SLT"
+    },
+    "659": {
+      "op": "ISZERO"
+    },
+    "660": {
+      "op": "PUSH2",
+      "value": "0x29C"
+    },
+    "663": {
+      "op": "JUMPI"
+    },
+    "664": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "666": {
+      "op": "DUP1"
+    },
     "667": {
-      "op": "DUP2"
+      "op": "REVERT"
     },
     "668": {
-      "op": "AND"
+      "op": "JUMPDEST"
     },
     "669": {
       "op": "DUP2"
     },
     "670": {
-      "op": "EQ"
+      "op": "CALLDATALOAD"
     },
     "671": {
-      "op": "PUSH2",
-      "value": "0x2A7"
+      "op": "PUSH1",
+      "value": "0x1"
     },
-    "674": {
-      "op": "JUMPI"
+    "673": {
+      "op": "PUSH1",
+      "value": "0x1"
     },
     "675": {
       "op": "PUSH1",
-      "value": "0x0"
+      "value": "0xA0"
     },
     "677": {
-      "op": "DUP1"
+      "op": "SHL"
     },
     "678": {
-      "op": "REVERT"
+      "op": "SUB"
     },
     "679": {
-      "op": "JUMPDEST"
+      "op": "DUP2"
     },
     "680": {
-      "op": "SWAP4"
+      "op": "AND"
     },
     "681": {
-      "op": "SWAP3"
+      "op": "DUP2"
     },
     "682": {
-      "op": "POP"
+      "op": "EQ"
     },
     "683": {
-      "op": "POP"
-    },
-    "684": {
-      "op": "POP"
-    },
-    "685": {
-      "jump": "o",
-      "op": "JUMP"
+      "op": "PUSH2",
+      "value": "0x2B3"
     },
     "686": {
-      "op": "JUMPDEST"
+      "op": "JUMPI"
     },
     "687": {
       "op": "PUSH1",
       "value": "0x0"
     },
     "689": {
-      "op": "DUP3"
+      "op": "DUP1"
     },
     "690": {
-      "op": "MLOAD"
+      "op": "REVERT"
     },
     "691": {
+      "op": "JUMPDEST"
+    },
+    "692": {
+      "op": "SWAP4"
+    },
+    "693": {
+      "op": "SWAP3"
+    },
+    "694": {
+      "op": "POP"
+    },
+    "695": {
+      "op": "POP"
+    },
+    "696": {
+      "op": "POP"
+    },
+    "697": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "698": {
+      "op": "JUMPDEST"
+    },
+    "699": {
       "op": "PUSH1",
       "value": "0x0"
     },
-    "693": {
-      "op": "JUMPDEST"
-    },
-    "694": {
-      "op": "DUP2"
-    },
-    "695": {
-      "op": "DUP2"
-    },
-    "696": {
-      "op": "LT"
-    },
-    "697": {
-      "op": "ISZERO"
-    },
-    "698": {
-      "op": "PUSH2",
-      "value": "0x2CF"
-    },
     "701": {
-      "op": "JUMPI"
+      "op": "DUP3"
     },
     "702": {
-      "op": "PUSH1",
-      "value": "0x20"
+      "op": "MLOAD"
     },
-    "704": {
-      "op": "DUP2"
+    "703": {
+      "op": "PUSH1",
+      "value": "0x0"
     },
     "705": {
-      "op": "DUP7"
+      "op": "JUMPDEST"
     },
     "706": {
-      "op": "ADD"
+      "op": "DUP2"
     },
     "707": {
       "op": "DUP2"
     },
     "708": {
-      "op": "ADD"
+      "op": "LT"
     },
     "709": {
-      "op": "MLOAD"
-    },
-    "710": {
-      "op": "DUP6"
-    },
-    "711": {
-      "op": "DUP4"
-    },
-    "712": {
-      "op": "ADD"
-    },
-    "713": {
-      "op": "MSTORE"
-    },
-    "714": {
-      "op": "ADD"
-    },
-    "715": {
-      "op": "PUSH2",
-      "value": "0x2B5"
-    },
-    "718": {
-      "op": "JUMP"
-    },
-    "719": {
-      "op": "JUMPDEST"
-    },
-    "720": {
-      "op": "DUP2"
-    },
-    "721": {
-      "op": "DUP2"
-    },
-    "722": {
-      "op": "GT"
-    },
-    "723": {
       "op": "ISZERO"
     },
-    "724": {
+    "710": {
       "op": "PUSH2",
-      "value": "0x2DE"
+      "value": "0x2DB"
     },
-    "727": {
+    "713": {
       "op": "JUMPI"
     },
-    "728": {
-      "op": "PUSH1",
-      "value": "0x0"
-    },
-    "730": {
-      "op": "DUP3"
-    },
-    "731": {
-      "op": "DUP6"
-    },
-    "732": {
-      "op": "ADD"
-    },
-    "733": {
-      "op": "MSTORE"
-    },
-    "734": {
-      "op": "JUMPDEST"
-    },
-    "735": {
-      "op": "POP"
-    },
-    "736": {
-      "op": "SWAP2"
-    },
-    "737": {
-      "op": "SWAP1"
-    },
-    "738": {
-      "op": "SWAP2"
-    },
-    "739": {
-      "op": "ADD"
-    },
-    "740": {
-      "op": "SWAP3"
-    },
-    "741": {
-      "op": "SWAP2"
-    },
-    "742": {
-      "op": "POP"
-    },
-    "743": {
-      "op": "POP"
-    },
-    "744": {
-      "jump": "o",
-      "op": "JUMP"
-    },
-    "745": {
-      "op": "JUMPDEST"
-    },
-    "746": {
-      "op": "PUSH1",
-      "value": "0x0"
-    },
-    "748": {
+    "714": {
       "op": "PUSH1",
       "value": "0x20"
     },
-    "750": {
-      "op": "DUP3"
+    "716": {
+      "op": "DUP2"
     },
-    "751": {
-      "op": "DUP5"
+    "717": {
+      "op": "DUP7"
     },
-    "752": {
-      "op": "SUB"
+    "718": {
+      "op": "ADD"
     },
-    "753": {
-      "op": "SLT"
+    "719": {
+      "op": "DUP2"
     },
-    "754": {
+    "720": {
+      "op": "ADD"
+    },
+    "721": {
+      "op": "MLOAD"
+    },
+    "722": {
+      "op": "DUP6"
+    },
+    "723": {
+      "op": "DUP4"
+    },
+    "724": {
+      "op": "ADD"
+    },
+    "725": {
+      "op": "MSTORE"
+    },
+    "726": {
+      "op": "ADD"
+    },
+    "727": {
+      "op": "PUSH2",
+      "value": "0x2C1"
+    },
+    "730": {
+      "op": "JUMP"
+    },
+    "731": {
+      "op": "JUMPDEST"
+    },
+    "732": {
+      "op": "DUP2"
+    },
+    "733": {
+      "op": "DUP2"
+    },
+    "734": {
+      "op": "GT"
+    },
+    "735": {
       "op": "ISZERO"
     },
-    "755": {
+    "736": {
       "op": "PUSH2",
-      "value": "0x2FB"
+      "value": "0x2EA"
     },
-    "758": {
+    "739": {
       "op": "JUMPI"
     },
-    "759": {
+    "740": {
       "op": "PUSH1",
       "value": "0x0"
     },
-    "761": {
-      "op": "DUP1"
+    "742": {
+      "op": "DUP3"
     },
-    "762": {
-      "op": "REVERT"
+    "743": {
+      "op": "DUP6"
     },
-    "763": {
+    "744": {
+      "op": "ADD"
+    },
+    "745": {
+      "op": "MSTORE"
+    },
+    "746": {
       "op": "JUMPDEST"
     },
-    "764": {
+    "747": {
       "op": "POP"
     },
-    "765": {
-      "op": "MLOAD"
-    },
-    "766": {
+    "748": {
       "op": "SWAP2"
     },
-    "767": {
+    "749": {
       "op": "SWAP1"
     },
-    "768": {
+    "750": {
+      "op": "SWAP2"
+    },
+    "751": {
+      "op": "ADD"
+    },
+    "752": {
+      "op": "SWAP3"
+    },
+    "753": {
+      "op": "SWAP2"
+    },
+    "754": {
       "op": "POP"
     },
-    "769": {
+    "755": {
+      "op": "POP"
+    },
+    "756": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "757": {
+      "op": "JUMPDEST"
+    },
+    "758": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "760": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "762": {
+      "op": "DUP3"
+    },
+    "763": {
+      "op": "DUP5"
+    },
+    "764": {
+      "op": "SUB"
+    },
+    "765": {
+      "op": "SLT"
+    },
+    "766": {
+      "op": "ISZERO"
+    },
+    "767": {
+      "op": "PUSH2",
+      "value": "0x307"
+    },
+    "770": {
+      "op": "JUMPI"
+    },
+    "771": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "773": {
+      "op": "DUP1"
+    },
+    "774": {
+      "op": "REVERT"
+    },
+    "775": {
+      "op": "JUMPDEST"
+    },
+    "776": {
+      "op": "POP"
+    },
+    "777": {
+      "op": "MLOAD"
+    },
+    "778": {
+      "op": "SWAP2"
+    },
+    "779": {
+      "op": "SWAP1"
+    },
+    "780": {
+      "op": "POP"
+    },
+    "781": {
       "jump": "o",
       "op": "JUMP"
     }
   },
-  "sha1": "d2cc7cb9d6495ac50012a9e58cf00f7ba62095d0",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Vault {\n\n    /*//////////////////////////////////////////////////////////////\n                               VARIABLES & EVENTS\n    //////////////////////////////////////////////////////////////*/\n\n    address public factory;\n    address public implementation;\n\n    event implementationIsSet(address);\n    event AddedValuesByDelegateCall(address vault, bool success);\n\n\n    /*//////////////////////////////////////////////////////////////\n                               MODIFIERS\n    //////////////////////////////////////////////////////////////*/\n\n\n    modifier onlyFactory() {\n        require(msg.sender == factory, \"onlyFactory()\");\n        _;\n    }\n\n    /*//////////////////////////////////////////////////////////////\n                               INIT\n    //////////////////////////////////////////////////////////////*/\n\n    constructor(address _implementation) public {\n        implementation = _implementation;\n        factory = msg.sender;\n    }\n\n\n    /*//////////////////////////////////////////////////////////////\n                               READS\n    //////////////////////////////////////////////////////////////*/\n\n\n\n    function setImplementation(address _implementation) external {\n        implementation = _implementation;\n        emit implementationIsSet(_implementation);\n    }\n\n    function getImplementation() external view returns(address){\n        return implementation;\n    }\n\n\n    /*//////////////////////////////////////////////////////////////\n                               WRITES\n    //////////////////////////////////////////////////////////////*/\n\n\n    function testDelegateCallPricePerShare(address _vault) external returns(uint256){\n        (bool success, bytes memory returnedData) = implementation.delegatecall(\n        abi.encodeWithSignature(\"getYearnPricePerShare(address)\", _vault)\n        );\n        require(success, \"delegateCall failed\");\n\n        emit AddedValuesByDelegateCall(_vault, success);\n        return abi.decode(returnedData, (uint256));\n    }\n}",
-  "sourceMap": "57:2014:1:-:0;;;900:123;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;954:14;:32;;-1:-1:-1;;;;;954:32:1;;;-1:-1:-1;;;;;;954:32:1;;;;;;:14;996:20;;;;;1006:10;996:20;;;57:2014;;14:290:2;84:6;137:2;125:9;116:7;112:23;108:32;105:52;;;153:1;150;143:12;105:52;179:16;;-1:-1:-1;;;;;224:31:2;;214:42;;204:70;;270:1;267;260:12;204:70;293:5;14:290;-1:-1:-1;;;14:290:2:o;:::-;57:2014:1;;;;;;",
+  "sha1": "47ad65fb4aee19348f5bd804bcb3fc451737e66b",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Vault {\n\n    /*//////////////////////////////////////////////////////////////\n                               VARIABLES & EVENTS\n    //////////////////////////////////////////////////////////////*/\n\n    address public factory;\n    address public implementation;\n    bool private isInited;\n\n    event implementationIsSet(address);\n    event AddedValuesByDelegateCall(address vault, bool success);\n    event Test(uint256 test);\n\n\n    /*//////////////////////////////////////////////////////////////\n                               MODIFIERS\n    //////////////////////////////////////////////////////////////*/\n\n\n    modifier onlyFactory() {\n        require(msg.sender == factory, \"onlyFactory()\");\n        _;\n    }\n\n    /*//////////////////////////////////////////////////////////////\n                               INIT\n    //////////////////////////////////////////////////////////////*/\n\n    function init(address _implementation) external {\n        require(!isInited,\"no second init\");\n        factory = msg.sender;\n        implementation = _implementation;\n        isInited = true;\n    }\n\n\n    /*//////////////////////////////////////////////////////////////\n                               READS\n    //////////////////////////////////////////////////////////////*/\n\n\n\n\n    function getImplementation() external view returns(address){\n        return implementation;\n    }\n\n\n    /*//////////////////////////////////////////////////////////////\n                               WRITES\n    //////////////////////////////////////////////////////////////*/\n    \n\n\n\n\n    function testDelegateCallPricePerShare(address _vault) external {\n        (bool success, bytes memory returnedData) = implementation.delegatecall(\n        abi.encodeWithSignature(\"getYearnPricePerShare(address)\", _vault)\n        );\n        require(success, \"delegateCall failed\");\n        emit Test(abi.decode(returnedData, (uint256)));\n    }\n}\n\n    /*//////////////////////////////////////////////////////////////\n                               INTERNALS\n    //////////////////////////////////////////////////////////////*/\n    ",
+  "sourceMap": "57:1916:1:-:0;;;;;;;;;;;;;;;;;;;",
   "sourcePath": "contracts/Vault.sol",
   "type": "contract"
 }

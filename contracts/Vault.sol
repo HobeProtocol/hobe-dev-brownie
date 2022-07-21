@@ -9,9 +9,11 @@ contract Vault {
 
     address public factory;
     address public implementation;
+    bool private isInited;
 
     event implementationIsSet(address);
     event AddedValuesByDelegateCall(address vault, bool success);
+    event Test(uint256 test);
 
 
     /*//////////////////////////////////////////////////////////////
@@ -28,9 +30,11 @@ contract Vault {
                                INIT
     //////////////////////////////////////////////////////////////*/
 
-    constructor(address _implementation) public {
-        implementation = _implementation;
+    function init(address _implementation) external {
+        require(!isInited,"no second init");
         factory = msg.sender;
+        implementation = _implementation;
+        isInited = true;
     }
 
 
@@ -40,10 +44,6 @@ contract Vault {
 
 
 
-    function setImplementation(address _implementation) external {
-        implementation = _implementation;
-        emit implementationIsSet(_implementation);
-    }
 
     function getImplementation() external view returns(address){
         return implementation;
@@ -53,15 +53,21 @@ contract Vault {
     /*//////////////////////////////////////////////////////////////
                                WRITES
     //////////////////////////////////////////////////////////////*/
+    
 
 
-    function testDelegateCallPricePerShare(address _vault) external returns(uint256){
+
+
+    function testDelegateCallPricePerShare(address _vault) external {
         (bool success, bytes memory returnedData) = implementation.delegatecall(
         abi.encodeWithSignature("getYearnPricePerShare(address)", _vault)
         );
         require(success, "delegateCall failed");
-
-        emit AddedValuesByDelegateCall(_vault, success);
-        return abi.decode(returnedData, (uint256));
+        emit Test(abi.decode(returnedData, (uint256)));
     }
 }
+
+    /*//////////////////////////////////////////////////////////////
+                               INTERNALS
+    //////////////////////////////////////////////////////////////*/
+    
