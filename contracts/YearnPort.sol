@@ -26,16 +26,6 @@ contract YearnPort {
     mapping (address => uint256) user_to_ids;
 
 
-    modifier onlyFactory() {
-      require(msg.sender == factory, "onlyFactory()");
-      _;
-    }
-
-    modifier updateMaxFixed() {
-
-      _;
-    }
-
     constructor () public {
       factory = msg.sender;
     }
@@ -57,10 +47,6 @@ contract YearnPort {
     }
 
 
-
-    function setSomething(uint256 _something) external onlyFactory {
-      something = _something;
-    }
 
     // @notice Deposit underlying into vault
     function deposit(uint256 underlyingAmount, address vault) external returns (uint256){
